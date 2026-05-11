@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fórmulas y Operadores | Guía</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        code { background: var(--bg-sidebar); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-weight: bold; color: var(--accent); }
+        table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+        table th, table td { border: 1px solid var(--border); padding: 1rem; text-align: left; }
+        table th { background: var(--bg-sidebar); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../index.html" class="back-link">← Volver al inicio</a>
+      <article class="guide-content">
+        <header>
+          <h1>Fórmulas y Operadores Básicos</h1>
+          <p>Aprende a realizar cálculos automáticos y eficientes en tus hojas de cálculo.</p>
+        </header>
+
+        <section>
+          <h2>1. La Regla de Oro</h2>
+          <p>Toda fórmula en Excel <strong>debe</strong> comenzar con el signo igual <code>=</code>. Si no lo pones, Excel tratará tu entrada como simple texto.</p>
+        </section>
+
+        <section>
+          <h2>2. Operadores Matemáticos</h2>
+          <p>Excel utiliza los símbolos estándar para las operaciones básicas:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Operación</th>
+                <th>Símbolo</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Suma</td>
+                <td><code>+</code></td>
+                <td><code>=A1+B1</code></td>
+              </tr>
+              <tr>
+                <td>Resta</td>
+                <td><code>-</code></td>
+                <td><code>=A1-B1</code></td>
+              </tr>
+              <tr>
+                <td>Multiplicación</td>
+                <td><code>*</code></td>
+                <td><code>=A1*B1</code></td>
+              </tr>
+              <tr>
+                <td>División</td>
+                <td><code>/</code></td>
+                <td><code>=A1/B1</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>3. Funciones Básicas Esenciales</h2>
+          <p>A diferencia de los operadores, las funciones son palabras clave predefinidas:</p>
+          <ul>
+            <li><code>=SUMA(A1:A10)</code>: Suma todos los valores en el rango seleccionado.</li>
+            <li><code>=PROMEDIO(B1:B20)</code>: Calcula la media aritmética.</li>
+            <li><code>=CONTAR(C1:C10)</code>: Cuenta cuántas celdas contienen números.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

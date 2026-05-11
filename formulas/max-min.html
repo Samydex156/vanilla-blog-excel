@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funciones MAX() y MIN() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+        .dual-column { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Funciones MAX y MIN</h1>
+          <p>Identifica instantáneamente los valores extremos (máximos y mínimos) de tus datos.</p>
+        </header>
+
+        <section class="dual-column">
+          <div>
+            <h2>MAX()</h2>
+            <p>Devuelve el <strong>valor más alto</strong> de un conjunto de números.</p>
+            <div class="syntax" style="font-size: 0.9rem;">=MAX(rango)</div>
+          </div>
+          <div>
+            <h2>MIN()</h2>
+            <p>Devuelve el <strong>valor más bajo</strong> de un conjunto de números.</p>
+            <div class="syntax" style="font-size: 0.9rem;">=MIN(rango)</div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo de Aplicación</h2>
+          <p>Imagina una tabla de ventas mensuales. Puedes saber cuál fue el mejor mes y cuál el peor rápidamente:</p>
+          <ul>
+            <li><code>=MAX(C2:C13)</code> → Resultado: El monto de venta más alto.</li>
+            <li><code>=MIN(C2:C13)</code> → Resultado: El monto de venta más bajo.</li>
+          </ul>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo MAX y MIN]
+          </div>
+        </section>
+
+        <section>
+          <h2>Consejo</h2>
+          <p>Estas funciones son extremadamente útiles combinadas con el <strong>Formato Condicional</strong> para resaltar automáticamente los valores extremos en una tabla.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

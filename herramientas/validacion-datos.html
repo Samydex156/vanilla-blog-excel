@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación de Datos | Herramientas Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .feature-list { list-style: none; padding: 0; margin: 2rem 0; }
+        .feature-item { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center; }
+        .icon { width: 24px; height: 24px; color: var(--accent); flex-shrink: 0; }
+        .example-box { border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; background: var(--bg-sidebar); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../herramientas.html" class="back-link">← Volver a Herramientas</a>
+      <article class="guide-content">
+        <header>
+          <h1>Validación de Datos</h1>
+          <p>Garantiza la integridad de tu información restringiendo el tipo de datos permitidos.</p>
+        </header>
+
+        <section>
+          <h2>¿Por qué usar validación?</h2>
+          <p>La validación de datos ayuda a evitar errores de entrada (como escribir un texto donde debería ir un número) y permite crear menús desplegables fáciles de usar.</p>
+        </section>
+
+        <section>
+          <h2>Tipos de Restricciones</h2>
+          <div class="feature-list">
+            <div class="feature-item">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              <span><strong>Lista:</strong> Crea un menú desplegable con opciones predefinidas.</span>
+            </div>
+            <div class="feature-item">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              <span><strong>Número Entero:</strong> Solo permite valores numéricos sin decimales.</span>
+            </div>
+            <div class="feature-item">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              <span><strong>Fecha:</strong> Restringe la entrada a un rango de fechas específico.</span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Cómo configurarla</h2>
+          <p>Ve a la pestaña <strong>Datos</strong> > <strong>Validación de datos</strong>. En la pestaña "Configuración", elige el criterio que necesites. También puedes personalizar el mensaje de error que verá el usuario si ingresa un dato incorrecto.</p>
+          <div class="example-box">
+            <strong>Caso de uso común:</strong> Crear un desplegable para seleccionar "SÍ" o "NO" en una columna de estado.
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

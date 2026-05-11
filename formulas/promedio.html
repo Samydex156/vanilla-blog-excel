@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función PROMEDIO() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función PROMEDIO()</h1>
+          <p>Calcula la media aritmética (el promedio) de un conjunto de valores numéricos.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =PROMEDIO(valor1; [valor2]; ...)
+          </div>
+          <p>Excel suma todos los valores seleccionados y los divide entre la cantidad total de números encontrados.</p>
+        </section>
+
+        <section>
+          <h2>Uso en Clases</h2>
+          <p>Es la función ideal para calcular la nota final de un estudiante o el precio promedio de una lista de productos.</p>
+          <code>=PROMEDIO(B2:B20)</code>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo PROMEDIO]
+          </div>
+        </section>
+
+        <section>
+          <h2>Nota importante</h2>
+          <p>Si una celda del rango está vacía, la función la ignora. Sin embargo, si la celda contiene un <strong>0</strong>, ese número sí se incluye en el cálculo del promedio.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
