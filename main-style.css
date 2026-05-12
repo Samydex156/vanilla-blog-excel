@@ -48,6 +48,7 @@ aside {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-decoration: none;
 }
 
 nav ul {
@@ -162,8 +163,8 @@ header p {
 /* Infographic Grid */
 .infografia-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
     align-items: start;
 }
 
@@ -190,17 +191,17 @@ header p {
 }
 
 .infografia-info {
-    padding: 1.25rem;
+    padding: 1rem;
 }
 
 .infografia-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
     color: var(--text-primary);
 }
 
 .infografia-info p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
 }
 
