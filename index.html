@@ -6,97 +6,6 @@
     <meta name="description" content="Galería de infografías interactivas sobre Excel. Aprende tips curiosos y mejores prácticas de forma visual." />
     <title>Infografías | Excel Hub</title>
     <link rel="stylesheet" href="main-style.css" />
-    <style>
-        .infografia-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            align-items: start;
-        }
-        .infografia-card {
-            background: var(--bg-sidebar);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        .infografia-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: var(--accent);
-        }
-        .infografia-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-bottom: 1px solid var(--border);
-        }
-        .infografia-info {
-            padding: 1.25rem;
-        }
-        .infografia-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        .infografia-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 2rem;
-        }
-        .modal-content {
-            max-width: 90%;
-            max-height: 80vh;
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
-        .modal-actions {
-            margin-top: 1.5rem;
-            display: flex;
-            gap: 1rem;
-        }
-        .modal-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-        }
-        .btn-download {
-            background-color: var(--accent);
-            color: white;
-        }
-        .btn-download:hover {
-            background-color: #165a35;
-        }
-        .btn-close {
-            background-color: #4b5563;
-            color: white;
-        }
-        .btn-close:hover {
-            background-color: #374151;
-        }
-    </style>
   </head>
   <body>
     <aside>
@@ -128,6 +37,14 @@
           <div class="infografia-info">
             <h3>Errores de Excel</h3>
             <p>Conoce qué significan errores como #REF!, #N/A o #DIV/0! y cómo solucionarlos.</p>
+          </div>
+        </div>
+
+        <div class="infografia-card" onclick="openModal('infografias/guardar_excel.png', 'Guardar en Excel')">
+          <img src="infografias/guardar_excel.png" alt="Formas de guardar en Excel" class="infografia-img" />
+          <div class="infografia-info">
+            <h3>Guardar en Excel</h3>
+            <p>Domina las opciones de guardado y formatos de archivo para proteger tu información.</p>
           </div>
         </div>
         

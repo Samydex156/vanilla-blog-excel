@@ -6,45 +6,6 @@
     <meta name="description" content="Galería de infografías interactivas sobre Excel. Aprende tips curiosos y mejores prácticas de forma visual." />
     <title>Infografías | Excel Hub</title>
     <link rel="stylesheet" href="main-style.css" />
-    <style>
-        .infografia-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            align-items: start;
-        }
-        .infografia-card {
-            background: var(--bg-sidebar);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        .infografia-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: var(--accent);
-        }
-        .infografia-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-bottom: 1px solid var(--border);
-        }
-        .infografia-info {
-            padding: 1.25rem;
-        }
-        .infografia-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        .infografia-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-    </style>
   </head>
   <body>
     <aside>
@@ -55,11 +16,11 @@
       <nav>
         <ul>
           <li><a href="practicas.html">Prácticas</a></li>
-          <li><a href="index.html">Guías</a></li>
+          <li><a href="guias.html">Guías</a></li>
           <li><a href="formulas.html">Fórmulas</a></li>
           <li><a href="atajos.html">Atajos</a></li>
           <li><a href="herramientas.html">Herramientas</a></li>
-          <li><a href="#" class="active">Infografías</a></li>
+          <li><a href="index.html" class="active">Infografías</a></li>
         </ul>
       </nav>
     </aside>
@@ -71,16 +32,24 @@
       </header>
 
       <section class="infografia-grid">
-        <div class="infografia-card" onclick="window.open('infografias/errores_excel.png', '_blank')">
+        <div class="infografia-card" onclick="openModal('infografias/errores_excel.png', 'Errores de Excel')">
           <img src="infografias/errores_excel.png" alt="Errores comunes en Excel" class="infografia-img" />
           <div class="infografia-info">
             <h3>Errores de Excel</h3>
             <p>Conoce qué significan errores como #REF!, #N/A o #DIV/0! y cómo solucionarlos.</p>
           </div>
         </div>
+
+        <div class="infografia-card" onclick="openModal('infografias/guardar_excel.png', 'Guardar en Excel')">
+          <img src="infografias/guardar_excel.png" alt="Formas de guardar en Excel" class="infografia-img" />
+          <div class="infografia-info">
+            <h3>Guardar en Excel</h3>
+            <p>Domina las opciones de guardado y formatos de archivo para proteger tu información.</p>
+          </div>
+        </div>
         
-        <!-- Placeholder for future infographics -->
-        <div class="infografia-card" style="opacity: 0.5; border-style: dashed;">
+        <!-- Placeholder -->
+        <div class="infografia-card" style="opacity: 0.5; border-style: dashed; cursor: default;">
           <div style="height: 250px; display: flex; align-items: center; justify-content: center; background: #eee;">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
           </div>
@@ -94,9 +63,41 @@
       <footer>
         <p>
           &copy; 2026 Instituto Nueva Tecnología | Prof. Samuel Durán<br />
-          Haz clic en cada imagen para verla en tamaño completo.
+          Haz clic en cada imagen para verla en detalle y descargarla.
         </p>
       </footer>
     </main>
+
+    <!-- Modal Structure -->
+    <div id="infoModal" class="modal">
+        <img id="modalImg" class="modal-content" src="" alt="Vista previa">
+        <div class="modal-actions">
+            <a id="downloadLink" href="" download class="modal-btn btn-download">Descargar Imagen</a>
+            <button onclick="closeModal()" class="modal-btn btn-close">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('infoModal');
+        const modalImg = document.getElementById('modalImg');
+        const downloadLink = document.getElementById('downloadLink');
+
+        function openModal(src, alt) {
+            modal.style.display = 'flex';
+            modalImg.src = src;
+            modalImg.alt = alt;
+            downloadLink.href = src;
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
   </body>
 </html>
