@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función HOY() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .case-study { background: #f0fdf4; border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; }
+        .case-study h3 { color: var(--accent); margin-top: 0; margin-bottom: 0.5rem; }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función HOY()</h1>
+          <p>Obtén la fecha actual del sistema de forma automática.</p>
+        </header>
+
+        <section>
+          <h2>Descripción</h2>
+          <p>La función <strong>HOY()</strong> es una de las funciones volátiles de Excel. Esto significa que se actualiza automáticamente cada vez que abres el archivo o realizas un cálculo, tomando siempre la fecha configurada en el reloj de tu computadora.</p>
+        </section>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =HOY()
+          </div>
+          <p>Esta función <strong>no requiere argumentos</strong>. Siempre debe llevar los paréntesis vacíos.</p>
+        </section>
+
+        <section>
+          <h2>Casos Prácticos</h2>
+          
+          <div class="case-study">
+            <h3>1. Cálculo de Edad (Método Simple)</h3>
+            <p>Si tienes la fecha de nacimiento en la celda B2, puedes calcular la edad aproximada usando:</p>
+            <code>=ENTERO((HOY()-B2)/365)</code>
+            <p><small>Nota: Restamos la fecha actual menos la de nacimiento y usamos <strong>ENTERO()</strong> para quitar los decimales.</small></p>
+          </div>
+
+          <div class="case-study">
+            <h3>2. Cálculo de Edad (Método Profesional)</h3>
+            <p>La forma más precisa de calcular la edad es con la función "oculta" <strong>SIFECHA</strong>:</p>
+            <code>=SIFECHA(B2; HOY(); "y")</code>
+            <p><small>Esta función no aparece en el buscador de Excel, pero funciona perfectamente. El parámetro <strong>"y"</strong> indica que queremos el resultado en años (Years).</small></p>
+          </div>
+
+          <div class="case-study">
+            <h3>3. Días Transcurridos o Antigüedad</h3>
+            <p>Para saber cuántos días han pasado desde que se inició un proyecto o contrato:</p>
+            <code>=HOY() - [Fecha_Inicio]</code>
+          </div>
+
+          <div class="case-study">
+            <h3>3. Control de Vencimientos</h3>
+            <p>Puedes usarla en Formato Condicional para resaltar facturas que vencen hoy o que ya están vencidas comparándolas con <code>HOY()</code>.</p>
+          </div>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo HOY]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones Importantes</h2>
+          <ul>
+            <li>La función solo devuelve la fecha (día, mes y año), no la hora.</li>
+            <li>Si el resultado aparece como un número extraño (ej. 45422), simplemente cambia el formato de la celda a <strong>Fecha corta</strong>.</li>
+            <li>Se actualiza sola, por lo que no es útil si quieres dejar una fecha fija o estática (para eso usa <code>Ctrl + ;</code>).</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

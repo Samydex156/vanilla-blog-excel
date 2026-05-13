@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fórmulas Modernas vs Tradicionales | Teoría de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+        .comparison-table th, .comparison-table td { border: 1px solid var(--border); padding: 1rem; text-align: left; }
+        .comparison-table th { background: var(--bg-sidebar); color: var(--accent); }
+        .highlight-box { background: var(--accent-soft); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        .highlight-box h3 { margin-top: 0; color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../teoria.html" class="back-link">← Volver a Teoría</a>
+      <article class="guide-content">
+        <header>
+          <h1>Fórmulas Modernas (2019 - 365)</h1>
+          <p>Descubre cómo ha evolucionado Excel y por qué las fórmulas actuales son mucho más potentes que las de 2016.</p>
+        </header>
+
+        <section>
+          <h2>La Revolución de 2019 en adelante</h2>
+          <p>Desde la versión 2019 y especialmente con Microsoft 365, Excel introdujo un concepto llamado <strong>Matrices Dinámicas</strong>. Esto cambió las reglas del juego: ahora una sola fórmula puede llenar múltiples celdas automáticamente.</p>
+        </section>
+
+        <section>
+          <h2>Comparativa: 2016 vs 2019/365</h2>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Función / Tarea</th>
+                <th>En Excel 2016 (Tradicional)</th>
+                <th>En Excel 2019+ (Moderno)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Búsquedas</strong></td>
+                <td>BUSCARV (Limitado a la derecha)</td>
+                <td><strong>BUSCARX</strong> (Busca en cualquier dirección)</td>
+              </tr>
+              <tr>
+                <td><strong>Múltiples condiciones</strong></td>
+                <td>SI anidados (Muy complejos)</td>
+                <td><strong>SI.CONJUNTO</strong> (Limpio y directo)</td>
+              </tr>
+              <tr>
+                <td><strong>Unir textos</strong></td>
+                <td>CONCATENAR (Celda por celda)</td>
+                <td><strong>UNIRCADENAS</strong> (Permite rangos y delimitadores)</td>
+              </tr>
+              <tr>
+                <td><strong>Filtrar datos</strong></td>
+                <td>Filtros manuales o Tablas Dinámicas</td>
+                <td><strong>FILTRAR</strong> (Función automática)</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="highlight-box">
+          <h3>La estrella: BUSCARX</h3>
+          <p>Si todavía usas <strong>BUSCARV</strong>, es momento de actualizarte. <strong>BUSCARX</strong> no solo es más fácil de usar, sino que es más seguro: no se rompe si insertas columnas y puede devolver un mensaje personalizado si no encuentra el dato, todo en una sola fórmula.</p>
+        </div>
+
+        <section>
+          <h2>Nuevas funciones destacadas</h2>
+          <ul>
+            <li><strong>UNICOS:</strong> Extrae una lista de valores sin duplicados instantáneamente.</li>
+            <li><strong>ORDENAR:</strong> Ordena una tabla automáticamente mediante una fórmula.</li>
+            <li><strong>LET:</strong> Permite asignar nombres a resultados de cálculos para mejorar el rendimiento.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Conclusión</h2>
+          <p>Aunque Excel 2016 sigue siendo funcional, las versiones modernas están diseñadas para que escribas <strong>menos fórmulas</strong> y obtengas <strong>más resultados</strong>. Aprender estas funciones nuevas te dará una ventaja competitiva enorme.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

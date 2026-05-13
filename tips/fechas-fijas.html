@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fecha y Hora Instantánea | Tips de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .shortcut-card { background: #f8fafc; border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; display: flex; align-items: center; gap: 1.5rem; }
+        .shortcut-keys { display: flex; gap: 0.5rem; }
+        .key { background: #ffffff; border: 1px solid #d1d5db; border-bottom: 3px solid #9ca3af; padding: 0.5rem 0.75rem; border-radius: 6px; font-weight: bold; font-family: monospace; }
+        .important-box { background: #fff1f2; border-left: 5px solid #e11d48; padding: 1.5rem; border-radius: 4px; margin: 2rem 0; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../tips.html" class="back-link">← Volver a Tips</a>
+      <article class="guide-content">
+        <header>
+          <h1>Sellar Fecha y Hora al Instante</h1>
+          <p>Inserta la fecha u hora actual como un valor fijo sin usar fórmulas complicadas.</p>
+        </header>
+
+        <section>
+          <h2>Atajos Mágicos</h2>
+          <p>A diferencia de las funciones <code>HOY()</code> o <code>AHORA()</code>, estos atajos insertan el dato como un texto estático que <strong>no cambiará</strong> al día siguiente.</p>
+          
+          <div class="shortcut-card">
+            <div class="shortcut-keys">
+                <span class="key">Ctrl</span> + <span class="key">,</span>
+            </div>
+            <div>
+                <strong>Insertar Fecha Actual:</strong> Escribe instantáneamente el día, mes y año actual.
+            </div>
+          </div>
+
+          <div class="shortcut-card">
+            <div class="shortcut-keys">
+                <span class="key">Ctrl</span> + <span class="key">Shift</span> + <span class="key">.</span>
+            </div>
+            <div>
+                <strong>Insertar Hora Actual:</strong> Escribe la hora exacta en formato de 24 horas.
+            </div>
+          </div>
+        </section>
+
+        <div class="important-box">
+          <h3>¿Por qué usar esto en lugar de fórmulas?</h3>
+          <p>Si usas la fórmula <code>=HOY()</code> para registrar una venta, mañana esa fecha cambiará automáticamente. Al usar estos atajos, la fecha queda "sellada" para siempre, lo cual es ideal para registros de ingreso, bitácoras o control de inventarios.</p>
+        </div>
+
+        <section>
+          <h2>Utilidad Real</h2>
+          <p>Imagina que llevas una hoja de control de asistencia de estudiantes. En lugar de mirar el reloj y escribir manualmente la hora, simplemente presionas <span class="key">Ctrl</span> + <span class="key">Shift</span> + <span class="key">.</span> y listo, tienes el registro exacto en menos de un segundo.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

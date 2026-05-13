@@ -360,4 +360,47 @@ footer {
     }
 }
 
-
+/* Atajos Styles */
+.shortcut-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+kbd {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-bottom: 3px solid #94a3b8;
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+    font-family: 'Inter', monospace;
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.shortcut-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.shortcut-category {
+    margin-top: 3.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--accent-soft);
+    color: var(--accent);
+    font-size: 1.4rem;
+}
+
+.tip-box-mini {
+    background: #f0fdf4;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border-left: 5px solid var(--accent);
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: #166534;
+}

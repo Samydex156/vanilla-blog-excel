@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función AHORA() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .case-study { background: #f0fdf4; border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; }
+        .case-study h3 { color: var(--accent); margin-top: 0; margin-bottom: 0.5rem; }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función AHORA()</h1>
+          <p>Obtén la fecha y la hora exacta del sistema en tiempo real.</p>
+        </header>
+
+        <section>
+          <h2>Descripción</h2>
+          <p>La función <strong>AHORA()</strong> es similar a HOY(), pero con la diferencia de que también incluye la <strong>hora, minutos y segundos</strong>. Es extremadamente útil para procesos donde el tiempo exacto es un factor crítico.</p>
+        </section>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =AHORA()
+          </div>
+          <p>Al igual que HOY(), no requiere argumentos y siempre debe llevar los paréntesis.</p>
+        </section>
+
+        <section>
+          <h2>Casos Prácticos</h2>
+          
+          <div class="case-study">
+            <h3>1. Registro de Ingreso/Salida</h3>
+            <p>Se usa frecuentemente para sellar el momento exacto en que se captura un dato o se termina un proceso dentro de una hoja de cálculo dinámica.</p>
+          </div>
+
+          <div class="case-study">
+            <h3>2. Cálculo de Horas Transcurridas</h3>
+            <p>Si tienes una hora de inicio y quieres saber cuántas horas han pasado hasta este preciso momento:</p>
+            <code>=AHORA() - [Fecha_Hora_Inicio]</code>
+            <p><small>Asegúrate de dar formato de [h]:mm a la celda del resultado.</small></p>
+          </div>
+
+          <div class="case-study">
+            <h3>3. Mensajes Dinámicos</h3>
+            <p>Puedes crear un encabezado que diga: "Reporte generado el: [AHORA()]" para que siempre muestre la última vez que se recalculó el libro.</p>
+          </div>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo AHORA]
+          </div>
+        </section>
+
+        <section>
+          <h2>Diferencias Clave</h2>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+            <thead>
+              <tr style="background: var(--accent-soft); text-align: left;">
+                <th style="padding: 0.75rem; border: 1px solid var(--border);">Función</th>
+                <th style="padding: 0.75rem; border: 1px solid var(--border);">Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--border);">=HOY()</td>
+                <td style="padding: 0.75rem; border: 1px solid var(--border);">12/05/2026</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--border);">=AHORA()</td>
+                <td style="padding: 0.75rem; border: 1px solid var(--border);">12/05/2026 19:45</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

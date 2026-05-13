@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tipos de Datos | Teoría de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .data-table th, .data-table td { border: 1px solid var(--border); padding: 1rem; text-align: left; }
+        .data-table th { background: var(--bg-sidebar); }
+        .alignment-tip { background: #e0f2fe; padding: 1rem; border-radius: 4px; border-left: 5px solid #0ea5e9; margin: 1.5rem 0; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../teoria.html" class="back-link">← Volver a Teoría</a>
+      <article class="guide-content">
+        <header>
+          <h1>Tipos de Datos en Excel</h1>
+          <p>La base fundamental: antes de procesar, debemos entender qué estamos guardando.</p>
+        </header>
+
+        <section>
+          <h2>Los 4 tipos principales</h2>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <strong><td>Números</td></strong>
+                <td>Valores con los que se pueden hacer cálculos matemáticos.</td>
+                <td>150, -20, 3.14</td>
+              </tr>
+              <tr>
+                <strong><td>Texto</td></strong>
+                <td>Cualquier combinación de letras y números que no se use para calcular.</td>
+                <td>"Juan", "Producto A1"</td>
+              </tr>
+              <tr>
+                <strong><td>Fechas</td></strong>
+                <td>Internamente Excel los trata como números, pero se muestran como días.</td>
+                <td>12/05/2026</td>
+              </tr>
+              <tr>
+                <strong><td>Valores Lógicos</td></strong>
+                <td>Resultados de comparaciones.</td>
+                <td>VERDADERO / FALSO</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="alignment-tip">
+          <h3>¡Ojo con la alineación!</h3>
+          <p>Un truco visual para saber si Excel entendió bien tus datos es mirar cómo se alinean por defecto:</p>
+          <ul>
+            <li>Los <strong>Números</strong> se alinean a la <strong>DERECHA</strong>.</li>
+            <li>El <strong>Texto</strong> se alinea a la <strong>IZQUIERDA</strong>.</li>
+          </ul>
+        </div>
+
+        <section>
+          <h2>¿Por qué importa?</h2>
+          <p>Si intentas sumar una celda que Excel cree que es "Texto" (aunque parezca un número), te dará un error o un resultado de cero. Identificar el tipo de dato correcto es el primer paso para no tener errores en tus fórmulas.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

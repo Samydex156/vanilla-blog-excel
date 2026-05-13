@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anatomía de una Función | Teoría de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .anatomy-box { background: #0f172a; color: #f8fafc; padding: 2rem; border-radius: 12px; font-family: 'Courier New', Courier, monospace; font-size: 1.5rem; text-align: center; margin: 2rem 0; border-bottom: 4px solid var(--accent); }
+        .part { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; margin: 0 0.1rem; }
+        .equal { color: #f472b6; }
+        .name { color: #60a5fa; font-weight: bold; }
+        .paren { color: #fbbf24; }
+        .arg { color: #34d399; }
+        .sep { color: #94a3b8; }
+        .description-list { list-style: none; padding: 0; }
+        .description-list li { margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 3px solid var(--border); }
+        .description-list strong { color: var(--accent); display: block; font-size: 1.1rem; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../teoria.html" class="back-link">← Volver a Teoría</a>
+      <article class="guide-content">
+        <header>
+          <h1>Anatomía de una Función</h1>
+          <p>Entiende la estructura lógica de cualquier función para dejar de cometer errores de sintaxis.</p>
+        </header>
+
+        <section>
+          <h2>¿Cómo se escribe una función?</h2>
+          <p>Todas las funciones en Excel siguen una regla de escritura estricta llamada <strong>Sintaxis</strong>. Si falta un solo carácter, la función no funcionará.</p>
+          
+          <div class="anatomy-box">
+            <span class="part equal">=</span><span class="part name">SUMA</span><span class="part paren">(</span><span class="part arg">A1:A10</span><span class="part sep">;</span> <span class="part arg">B1</span><span class="part paren">)</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>Las Partes Fundamentales</h2>
+          <ul class="description-list">
+            <li>
+              <strong>1. El Signo Igual (=)</strong>
+              Le avisa a Excel que lo que viene no es un simple texto, sino una operación que debe calcular.
+            </li>
+            <li>
+              <strong>2. Nombre de la Función</strong>
+              Es la palabra clave que define qué hará Excel (SUMA, BUSCARV, SI, etc.). Puede escribirse en minúsculas, pero Excel lo pasará a mayúsculas automáticamente.
+            </li>
+            <li>
+              <strong>3. Paréntesis ( )</strong>
+              Todas las funciones, incluso las que no llevan datos dentro como <code>HOY()</code>, deben llevar paréntesis. Encierran los "ingredientes" de la función.
+            </li>
+            <li>
+              <strong>4. Argumentos</strong>
+              Son los datos que la función necesita para trabajar (números, celdas, rangos o textos).
+            </li>
+            <li>
+              <strong>5. Separadores (; o ,)</strong>
+              Sirven para separar un argumento de otro. <strong>¡Ojo!</strong> Dependiendo de la configuración de tu computadora, usarás punto y coma (;) o coma (,).
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>El secreto de los corchetes [ ]</h2>
+          <p>Cuando Excel te muestra la ayuda de una función, verás algunos argumentos encerrados entre corchetes, por ejemplo: <code>=SUMA(número1; [número2])</code>.</p>
+          <p>Esto significa que ese argumento es <strong>OPCIONAL</strong>. La función puede trabajar perfectamente sin él.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

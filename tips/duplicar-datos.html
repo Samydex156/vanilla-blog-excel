@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duplicar Datos Rápido | Tips de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .shortcut-card { background: #f8fafc; border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; display: flex; align-items: center; gap: 1.5rem; }
+        .shortcut-keys { display: flex; gap: 0.5rem; }
+        .key { background: #ffffff; border: 1px solid #d1d5db; border-bottom: 3px solid #9ca3af; padding: 0.5rem 0.75rem; border-radius: 6px; font-weight: bold; font-family: monospace; }
+        .pro-tip { background: var(--accent-soft); border-left: 5px solid var(--accent); padding: 1.5rem; border-radius: 4px; margin: 2rem 0; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../tips.html" class="back-link">← Volver a Tips</a>
+      <article class="guide-content">
+        <header>
+          <h1>Duplicar Información al Instante</h1>
+          <p>Copia el contenido de la celda superior sin necesidad de arrastrar o usar Copiar/Pegar.</p>
+        </header>
+
+        <section>
+          <h2>Atajos de Clonación</h2>
+          <p>Estos atajos son ideales cuando estás llenando una lista y el dato de arriba se repite. Funcionan como un "sello" que trae la información hacia abajo.</p>
+          
+          <div class="shortcut-card">
+            <div class="shortcut-keys">
+                <span class="key">Ctrl</span> + <span class="key">'</span>
+            </div>
+            <div>
+                <strong>Clonar Valor:</strong> Copia exactamente lo que ves en la celda de arriba (el resultado) pero como un valor fijo.
+            </div>
+          </div>
+
+          <div class="shortcut-card">
+            <div class="shortcut-keys">
+                <span class="key">Ctrl</span> + <span class="key">J</span>
+            </div>
+            <div>
+                <strong>Rellenar hacia abajo:</strong> Copia tanto el valor como el formato (y las fórmulas) de la celda superior.
+            </div>
+          </div>
+        </section>
+
+        <div class="pro-tip">
+          <h3>¿Cuándo usar cada uno?</h3>
+          <p>Usa <strong>Ctrl + '</strong> cuando solo quieras el texto o número de arriba sin preocuparte por las fórmulas. Usa <strong>Ctrl + J</strong> cuando necesites que la fórmula de arriba se replique hacia abajo de forma masiva (puedes seleccionar varias celdas y presionar el atajo para rellenar todo el rango).</p>
+        </div>
+
+        <section>
+          <h2>El "Sello" de Pegado de Valores</h2>
+          <p>Si tienes una fórmula y quieres convertir su resultado en un valor fijo para que no cambie más, el atajo es:</p>
+          <ol>
+            <li>Copia la celda (<code>Ctrl + C</code>).</li>
+            <li>Presiona <strong>Ctrl + Alt + V</strong>, luego presiona la letra <strong>V</strong> y <strong>Enter</strong>.</li>
+          </ol>
+          <p>Esto "seca" la fórmula y deja solo el resultado final.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
