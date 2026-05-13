@@ -80,36 +80,79 @@
 
     <!-- Modal Structure -->
     <div id="infoModal" class="modal">
-        <img id="modalImg" class="modal-content" src="" alt="Vista previa">
-        <div class="modal-actions">
-            <a id="downloadLink" href="" download class="modal-btn btn-download">Descargar Imagen</a>
-            <button onclick="closeModal()" class="modal-btn btn-close">Cerrar</button>
-        </div>
+      <div class="modal-body" id="modalBody">
+        <img id="modalImg" class="modal-content" src="" alt="Vista previa" />
+      </div>
+      <div class="modal-actions">
+        <a id="downloadLink" href="" download class="modal-btn btn-download">Descargar Imagen</a>
+        <button onclick="closeModal()" class="modal-btn btn-close">Cerrar</button>
+      </div>
     </div>
 
     <script>
-        const modal = document.getElementById('infoModal');
-        const modalImg = document.getElementById('modalImg');
-        const downloadLink = document.getElementById('downloadLink');
+      const modal = document.getElementById("infoModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalBody = document.getElementById("modalBody");
+      const downloadLink = document.getElementById("downloadLink");
 
-        function openModal(src, alt) {
-            modal.style.display = 'flex';
-            modalImg.src = src;
-            modalImg.alt = alt;
-            downloadLink.href = src;
+      // Lógica de arrastrar para desplazar
+      let isDragging = false;
+      let wasDragging = false;
+      let startY;
+      let scrollTop;
+
+      modalBody.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        wasDragging = false;
+        startY = e.pageY - modalBody.offsetTop;
+        scrollTop = modalBody.scrollTop;
+      });
+
+      modalBody.addEventListener('mouseleave', () => {
+        isDragging = false;
+      });
+
+      modalBody.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      modalBody.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        // Si el movimiento es mayor a 5px, lo consideramos arrastre
+        const y = e.pageY - modalBody.offsetTop;
+        if (Math.abs(y - startY) > 5) {
+            wasDragging = true;
         }
 
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+        e.preventDefault();
+        const walk = (y - startY) * 1.5;
+        modalBody.scrollTop = scrollTop - walk;
+      });
 
-        // Close modal when clicking outside the image
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
+      function openModal(src, alt) {
+        modal.style.display = "flex";
+        modalImg.src = src;
+        modalImg.alt = alt;
+        downloadLink.href = src;
+        document.body.style.overflow = "hidden";
+        modalBody.scrollTop = 0;
+        wasDragging = false; // Reset al abrir
+      }
+
+      function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      window.onclick = function (event) {
+        // Solo cerramos si el click fue en el fondo Y no estábamos arrastrando
+        if ((event.target === modal || event.target === modalBody) && !wasDragging) {
+          closeModal();
         }
+      };
     </script>
   </body>
 </html>
+
 
