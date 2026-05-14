@@ -2,7 +2,7 @@
 
 :root {
     --bg-main: #ffffff;
-    --bg-sidebar: #f9fafb;
+    --bg-sidebar: #eeeeee;
     --text-primary: #111827;
     --text-secondary: #4b5563;
     --text-muted: #9ca3af;
@@ -313,7 +313,7 @@ footer {
         padding: 1rem 1.25rem;
         border-right: none;
         border-bottom: 1px solid var(--border);
-        background-color: rgba(249, 250, 251, 0.95);
+        background-color: rgba(243, 244, 246, 0.95);
         backdrop-filter: blur(10px);
     }
 
@@ -449,4 +449,4 @@ kbd {
     color: white;
     border: none;
 }
-
+
