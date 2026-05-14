@@ -430,4 +430,23 @@ kbd {
     margin: 1.5rem 0;
     font-size: 0.95rem;
     color: #166534;
-}
+}
+
+/* Estilos de Evaluaciones */
+.darker-option {
+    border: 2px solid #374151 !important; /* Gris oscuro */
+    color: #1f2937 !important;
+    background: #fdfdfd;
+}
+
+.darker-option:hover {
+    background: #f3f4f6 !important;
+    border-color: var(--accent) !important;
+}
+
+.darker-option span {
+    background: #374151;
+    color: white;
+    border: none;
+}
+
