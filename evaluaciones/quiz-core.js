@@ -82,7 +82,7 @@ async function finishQuiz() {
 
     let score = 0;
     questions.forEach((q, index) => {
-        if (q.respuesta_correcta === userAnswers[index]) score++;
+        if (q.respuesta_correcta === userAnswers[index]) score += 10;
     });
 
     document.getElementById('final-score').innerText = score;
