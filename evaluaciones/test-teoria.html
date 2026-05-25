@@ -168,66 +168,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="quiz-core.js"></script>
     <script>
-      // CONFIGURACIÓN: Reemplazar por el ID real si subes las preguntas a Supabase.
-      // Actualmente usando un ID local para evitar errores y cargar las preguntas de abajo.
-      const TEST_ID = "test-teoria-local";
-
-      const PREGUNTAS_TEORIA = [
-        {
-          pregunta_text: "¿Cuál es la función principal de Excel según la teoría de hojas de cálculo?",
-          opciones: ["Diseñar gráficos vectoriales", "Crear presentaciones visuales", "Organizar, manipular y analizar datos", "Escribir documentos de texto"],
-          respuesta_correcta: 2
-        },
-        {
-          pregunta_text: "¿Cuántas filas tiene una hoja de Excel?",
-          opciones: ["1,000,000", "1,048,576", "16,384", "Infinitas"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "En el entorno de trabajo, ¿qué parte muestra la referencia o dirección de la celda activa?",
-          opciones: ["Barra de Fórmulas", "Barra de Título", "Cuadro de Nombres", "Barra de Estado"],
-          respuesta_correcta: 2
-        },
-        {
-          pregunta_text: "¿Cómo se identifican las columnas y las filas en una hoja de Excel?",
-          opciones: ["Columnas con números, filas con letras", "Columnas con letras, filas con números", "Ambas con números", "Ambas con letras"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "Si introduces un valor en una celda y por defecto se alinea a la DERECHA, ¿qué tipo de dato entiende Excel que es?",
-          opciones: ["Texto", "Número", "Lógico", "Error"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "¿Qué ocurre si intentas sumar una celda que Excel reconoce como 'Texto' aunque parezca un número?",
-          opciones: ["Excel lo convierte automáticamente y lo suma", "Excel pregunta si quieres cambiar el formato", "Da un error o un resultado de cero", "Cierra la hoja de cálculo por seguridad"],
-          respuesta_correcta: 2
-        },
-        {
-          pregunta_text: "¿Qué función moderna de Excel 2019/365 es recomendada para reemplazar a BUSCARV por ser más segura y flexible?",
-          opciones: ["BUSCARH", "BUSCARX", "BUSCAR.CONJUNTO", "INDICE"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "¿Qué concepto introducido en las versiones modernas (2019+) permite que una sola fórmula llene múltiples celdas automáticamente?",
-          opciones: ["Tablas Dinámicas", "Matrices Dinámicas", "Fórmulas Recursivas", "Marcos de Datos"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "Según la teoría, ¿qué función se utiliza en las versiones modernas para evaluar múltiples condiciones de forma limpia, reemplazando a los 'SI anidados'?",
-          opciones: ["SI.CONJUNTO", "SUMAR.SI", "ELEGIR", "CONDICION.MULTIPLE"],
-          respuesta_correcta: 0
-        },
-        {
-          pregunta_text: "¿Cuál de las siguientes es una función moderna que permite extraer una lista de valores sin duplicados instantáneamente?",
-          opciones: ["FILTRAR", "ORDENAR", "UNICOS", "LET"],
-          respuesta_correcta: 2
-        }
-      ];
+      // CONFIGURACIÓN: ID del test en Supabase
+      const TEST_ID = "659691e6-242a-453d-85b2-c9cfd6335fd3";
 
       // Inicializar al cargar
       document.addEventListener("DOMContentLoaded", () => {
-        initQuiz(TEST_ID, PREGUNTAS_TEORIA);
+        initQuiz(TEST_ID);
       });
     </script>
   </body>

@@ -168,65 +168,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="quiz-core.js"></script>
     <script>
-      // CONFIGURACIÓN: Usando un ID local para cargar las preguntas.
-      const TEST_ID = "test-teoria2-local";
-
-      const PREGUNTAS_TEORIA2 = [
-        {
-          pregunta_text: "Según la anatomía de una función en Excel, ¿qué carácter le indica a Excel que lo que se escribe es una operación a calcular?",
-          opciones: ["El paréntesis (", "El signo igual (=)", "El punto y coma (;)", "El corchete ["],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "¿Para qué sirven los argumentos dentro de una función de Excel?",
-          opciones: ["Para darle un nombre a la operación", "Para separar las diferentes hojas del libro", "Son los datos que la función necesita para trabajar", "Para cambiar el idioma del programa"],
-          respuesta_correcta: 2
-        },
-        {
-          pregunta_text: "Cuando en la ayuda de Excel un argumento aparece entre corchetes (ej. [número2]), ¿qué significa?",
-          opciones: ["Que es un error de sintaxis", "Que debes presionar F4", "Que ese argumento es opcional", "Que es obligatorio"],
-          respuesta_correcta: 2
-        },
-        {
-          pregunta_text: "¿Qué es una referencia relativa en Excel?",
-          opciones: ["Una fórmula que nunca cambia al copiarse", "El comportamiento por defecto donde la celda se ajusta automáticamente al copiarse", "Una referencia que solo funciona en la misma hoja", "Una fórmula con el símbolo de dólar ($)"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "¿Qué símbolo se utiliza para crear una referencia absoluta y 'congelar' una celda?",
-          opciones: ["#", "&", "=", "$"],
-          respuesta_correcta: 3
-        },
-        {
-          pregunta_text: "¿Qué tecla puedes presionar después de escribir una referencia para añadir automáticamente los símbolos de dólar ($)?",
-          opciones: ["F2", "F4", "F5", "F9"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "Si escribes la fórmula =5+2*3 en Excel, ¿cuál será el resultado y por qué?",
-          opciones: ["21, porque Excel lee de izquierda a derecha", "11, porque Excel multiplica antes de sumar", "11, porque suma antes de multiplicar", "21, porque es el resultado lógico"],
-          respuesta_correcta: 1
-        },
-        {
-          pregunta_text: "Según la jerarquía de operaciones, ¿qué elemento se calcula en primer lugar?",
-          opciones: ["La multiplicación", "La suma", "Lo que está dentro de los paréntesis ( )", "Las potencias (exponentes)"],
-          respuesta_correcta: 2
-        },
-        {
-          pregunta_text: "Si al escribir una fórmula aparece el error #¡REF!, ¿qué significa?",
-          opciones: ["Que estás dividiendo entre cero", "Que Excel no reconoce el nombre de la función", "Que la fórmula hace referencia a una celda que fue eliminada", "Que Excel esperaba un número pero encontró texto"],
-          respuesta_correcta: 2
-        },
-        {
-          pregunta_text: "¿Qué función sirve como 'salvavidas' para manejar los errores y mostrar un mensaje personalizado en lugar del código de error de Excel?",
-          opciones: ["SI.ERROR", "BUSCARV", "UNICOS", "IGNORAR.ERROR"],
-          respuesta_correcta: 0
-        }
-      ];
+      // CONFIGURACIÓN: ID del test en Supabase
+      const TEST_ID = "a0c03649-6474-4b3a-82e1-f630acf1bae9";
 
       // Inicializar al cargar
       document.addEventListener("DOMContentLoaded", () => {
-        initQuiz(TEST_ID, PREGUNTAS_TEORIA2);
+        initQuiz(TEST_ID);
       });
     </script>
   </body>
