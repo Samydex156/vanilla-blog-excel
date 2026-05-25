@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Referencias Relativas, Absolutas y Mixtas | Teoría de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .info-card { background: var(--bg-sidebar); border-left: 5px solid var(--accent); padding: 1.5rem; border-radius: 4px; margin: 2rem 0; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .data-table th, .data-table td { border: 1px solid var(--border); padding: 1rem; text-align: left; }
+        .data-table th { background: var(--bg-sidebar); }
+        code { background: #e2e8f0; padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: bold; color: #b91c1c; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../teoria.html" class="back-link">← Volver a Teoría</a>
+      <article class="guide-content">
+        <header>
+          <h1>Referencias Relativas, Absolutas y Mixtas</h1>
+          <p>El poder del símbolo de dólar ($) y cómo evita que tus fórmulas se rompan al copiarlas.</p>
+          <img src="../img/banner_referencias_excel.png" alt="Banner Referencias Excel" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 1rem;" />
+        </header>
+
+        <section>
+          <h2>¿Qué es una Referencia?</h2>
+          <p>En Excel, una "referencia" es simplemente la dirección de una celda, como <code>A1</code> o <code>B5</code>. Cuando usas una referencia en una fórmula (por ejemplo, <code>=A1*2</code>), le estás diciendo a Excel que busque el valor en esa celda específica y lo multiplique por 2.</p>
+        </section>
+
+        <section>
+          <h2>1. Referencias Relativas (El comportamiento por defecto)</h2>
+          <p>Por defecto, todas las referencias en Excel son relativas. Esto significa que si tienes la fórmula <code>=A1+B1</code> en la celda C1, y arrastras (copias) esa fórmula hacia abajo a la celda C2, la fórmula cambiará automáticamente a <code>=A2+B2</code>.</p>
+          <div class="info-card">
+            <h3>¿Por qué sucede esto?</h3>
+            <p>Porque Excel no lee "Suma la celda A1 y B1". Lee: "Suma la celda que está <strong>dos columnas a mi izquierda</strong> y la celda que está <strong>una columna a mi izquierda</strong>". Se mueven "relativamente" a la nueva posición.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>2. Referencias Absolutas (Congelando celdas)</h2>
+          <p>A veces no queremos que Excel cambie la referencia al copiar la fórmula. Por ejemplo, si estamos multiplicando una lista de precios por un porcentaje de descuento que está fijo en la celda <code>D1</code>.</p>
+          <p>Para decirle a Excel "¡No te muevas de esta celda!", usamos el símbolo del dólar <code>$</code>. Al colocar <code>$D$1</code>, estamos "congelando" tanto la columna D y la fila 1. No importa a dónde copies la fórmula, siempre apuntará a <code>D1</code>.</p>
+          <p><strong>Truco rápido:</strong> Presiona la tecla <strong>F4</strong> en tu teclado justo después de escribir la referencia de la celda (ej. D1) y Excel le añadirá los símbolos de dólar automáticamente.</p>
+        </section>
+
+        <section>
+          <h2>3. Referencias Mixtas (Nivel Avanzado)</h2>
+          <p>Las referencias mixtas ocurren cuando congelas <em>solo la fila</em> o <em>solo la columna</em>, pero no ambas.</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Referencia</th>
+                <th>¿Qué hace?</th>
+                <th>Uso común</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>A1</code></td>
+                <td><strong>Relativa.</strong> Cambian tanto la fila como la columna al arrastrar.</td>
+                <td>Cálculos fila por fila.</td>
+              </tr>
+              <tr>
+                <td><code>$A$1</code></td>
+                <td><strong>Absoluta.</strong> Ni la fila ni la columna cambian al arrastrar.</td>
+                <td>Impuestos fijos, metas globales o descuentos únicos.</td>
+              </tr>
+              <tr>
+                <td><code>$A1</code></td>
+                <td><strong>Mixta.</strong> La columna A está congelada, pero la fila cambia (A2, A3...).</td>
+                <td>Tablas de multiplicar o buscar en una columna específica.</td>
+              </tr>
+              <tr>
+                <td><code>A$1</code></td>
+                <td><strong>Mixta.</strong> La columna cambia (B, C...), pero la fila 1 está congelada.</td>
+                <td>Aplicar diferentes tipos de cambio que están en una fila de encabezados.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+      </article>
+    </main>
+  </body>
+</html>

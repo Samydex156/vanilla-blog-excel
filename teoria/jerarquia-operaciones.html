@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jerarquía de Operaciones Matemáticas | Teoría de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .info-card { background: var(--bg-sidebar); border-left: 5px solid var(--accent); padding: 1.5rem; border-radius: 4px; margin: 2rem 0; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .data-table th, .data-table td { border: 1px solid var(--border); padding: 1rem; text-align: left; }
+        .data-table th { background: var(--bg-sidebar); }
+        code { background: #e2e8f0; padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: bold; color: #b91c1c; }
+        .order-list { list-style-type: decimal; padding-left: 1.5rem; }
+        .order-list li { margin-bottom: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../teoria.html" class="back-link">← Volver a Teoría</a>
+      <article class="guide-content">
+        <header>
+          <h1>Jerarquía de Operaciones Matemáticas</h1>
+          <p>El orden importa: descubre cómo Excel calcula las ecuaciones y por qué los paréntesis son tus mejores amigos.</p>
+          <img src="../img/banner_jerarquia_operaciones.png" alt="Banner Jerarquía de Operaciones" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 1rem;" />
+        </header>
+
+        <section>
+          <h2>El misterio de =5+2*3</h2>
+          <p>Imagina que escribes la siguiente fórmula en una celda de Excel: <code>=5+2*3</code>.</p>
+          <p>Si la lees de izquierda a derecha, podrías pensar: <em>"5 más 2 es igual a 7, y 7 por 3 es 21"</em>.</p>
+          <p>Sin embargo, si presionas ENTER, <strong>Excel te dará como resultado 11</strong>. ¿Por qué se equivoca Excel? La respuesta es que no se equivoca; simplemente está siguiendo estrictamente la jerarquía de las operaciones matemáticas.</p>
+        </section>
+
+        <section>
+          <h2>El Orden de Cálculo en Excel</h2>
+          <p>Excel, al igual que cualquier calculadora científica, no lee de izquierda a derecha de forma plana. Sigue un orden específico de evaluación, que a menudo se enseña en la escuela bajo acrónimos como PEMDAS o BODMAS.</p>
+          <ol class="order-list">
+            <li><strong>Paréntesis:</strong> Cualquier cosa dentro de <code>( )</code> se calcula primero.</li>
+            <li><strong>Exponentes:</strong> Elevaciones a potencias, como <code>2^3</code>.</li>
+            <li><strong>Multiplicación (*) y División (/):</strong> Se calculan de izquierda a derecha (tienen el mismo nivel de prioridad).</li>
+            <li><strong>Suma (+) y Resta (-):</strong> Se calculan al final, también de izquierda a derecha.</li>
+          </ol>
+        </section>
+
+        <div class="info-card">
+          <h3>Resolviendo el misterio</h3>
+          <p>Volviendo a nuestra fórmula inicial <code>=5+2*3</code>, ahora sabemos que Excel prioriza la multiplicación sobre la suma:</p>
+          <ul>
+            <li><strong>Paso 1:</strong> Calcula la multiplicación <code>2 * 3 = 6</code></li>
+            <li><strong>Paso 2:</strong> Calcula la suma <code>5 + 6 = 11</code></li>
+          </ul>
+        </div>
+
+        <section>
+          <h2>El poder de los Paréntesis ( )</h2>
+          <p>Si realmente querías que el resultado fuera 21, necesitas "forzar" a Excel a sumar antes de multiplicar. Para ello, usamos los paréntesis, ya que son lo primero en la jerarquía.</p>
+          <p>La fórmula correcta sería: <code>=(5+2)*3</code></p>
+          <ul>
+            <li><strong>Paso 1:</strong> Calcula lo que está entre paréntesis <code>(5 + 2) = 7</code></li>
+            <li><strong>Paso 2:</strong> Calcula la multiplicación <code>7 * 3 = 21</code></li>
+          </ul>
+          <p><strong>Conclusión:</strong> Usa los paréntesis siempre que quieras asegurarte de que una parte de tu ecuación se calcule antes que el resto. No solo evitan errores graves de cálculo, sino que también hacen que tus fórmulas complejas sean mucho más fáciles de leer para otras personas.</p>
+        </section>
+
+      </article>
+    </main>
+  </body>
+</html>

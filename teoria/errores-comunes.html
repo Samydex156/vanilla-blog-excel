@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Errores Comunes en Excel | Teoría de Excel</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .error-card { background: var(--bg-sidebar); border-left: 5px solid #ef4444; padding: 1.5rem; border-radius: 4px; margin: 2rem 0; }
+        .error-title { font-family: 'Courier New', Courier, monospace; font-size: 1.25rem; font-weight: bold; color: #ef4444; margin-bottom: 0.5rem; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .data-table th, .data-table td { border: 1px solid var(--border); padding: 1rem; text-align: left; }
+        .data-table th { background: var(--bg-sidebar); }
+        code { background: #e2e8f0; padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: bold; color: #b91c1c; }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../teoria.html" class="back-link">← Volver a Teoría</a>
+      <article class="guide-content">
+        <header>
+          <h1>Errores Comunes en Excel (El Diccionario del Terror)</h1>
+          <p>No te asustes cuando veas un error. Aprende a diagnosticar y corregir tus propias fórmulas como un profesional.</p>
+          <img src="../img/banner_errores_comunes_excel.png" alt="Banner Errores Comunes" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 1rem;" />
+        </header>
+
+        <section>
+          <h2>¿Por qué ocurren los errores?</h2>
+          <p>Ver un error lleno de símbolos extraños como <code>#¡DIV/0!</code> o <code>#¡REF!</code> puede ser frustrante. Sin embargo, estos errores son en realidad "mensajes de ayuda" de Excel diciéndote exactamente qué salió mal.</p>
+          <p>A continuación, exploraremos los errores clásicos, qué significan y cómo puedes solucionarlos de forma independiente.</p>
+        </section>
+
+        <div class="error-card">
+          <div class="error-title">#¡DIV/0!</div>
+          <p><strong>Qué significa:</strong> Estás intentando dividir un número entre cero (0) o entre una celda vacía.</p>
+          <p><strong>Cómo solucionarlo:</strong> Revisa el divisor (la parte inferior de la división). Asegúrate de que no sea cero. Si esperas que a veces la celda esté vacía, puedes usar la función <code>SI.ERROR</code> para ocultar el mensaje.</p>
+        </div>
+
+        <div class="error-card">
+          <div class="error-title">#N/D (o #N/A)</div>
+          <p><strong>Qué significa:</strong> "No Disponible". Es el error más común al usar funciones de búsqueda como <code>BUSCARV</code> o <code>BUSCARX</code>. Significa que Excel no pudo encontrar el valor que le pediste que buscara.</p>
+          <p><strong>Cómo solucionarlo:</strong> Verifica que el valor que buscas realmente existe en tu base de datos. También revisa si hay espacios accidentales al final del texto (ej. "Juan " vs "Juan").</p>
+        </div>
+
+        <div class="error-card">
+          <div class="error-title">#¡VALOR!</div>
+          <p><strong>Qué significa:</strong> Excel esperaba un tipo de dato específico (como un número) pero encontró otro (como texto). Ocurre mucho cuando intentas sumar una celda que contiene letras o palabras.</p>
+          <p><strong>Cómo solucionarlo:</strong> Revisa las celdas a las que hace referencia tu fórmula. Asegúrate de no estar sumando, multiplicando o restando celdas que contienen texto.</p>
+        </div>
+
+        <div class="error-card">
+          <div class="error-title">#¡REF!</div>
+          <p><strong>Qué significa:</strong> "Referencia inválida". Este es el error destructivo. Significa que una fórmula hace referencia a una celda que fue eliminada (borraste toda la fila o columna) o pegaste algo encima que rompió la referencia.</p>
+          <p><strong>Cómo solucionarlo:</strong> Si acabas de borrar una columna, presiona <code>Ctrl + Z</code> para deshacer. Si el error ya está allí, tendrás que editar la fórmula y volver a seleccionar la celda correcta.</p>
+        </div>
+
+        <div class="error-card">
+          <div class="error-title">#¿NOMBRE?</div>
+          <p><strong>Qué significa:</strong> Excel no reconoce el texto en tu fórmula. Generalmente ocurre porque escribiste mal el nombre de la función (ej. <code>=PROMEDIOO(A1:A5)</code> en lugar de <code>=PROMEDIO(...)</code>).</p>
+          <p><strong>Cómo solucionarlo:</strong> Revisa la ortografía de la función. Si estás escribiendo un texto dentro de una fórmula, recuerda que siempre debe ir entre comillas dobles (ej. <code>"Hola"</code>).</p>
+        </div>
+
+        <div class="error-card">
+          <div class="error-title">#¡NÚM!</div>
+          <p><strong>Qué significa:</strong> Ocurre cuando un cálculo produce un número demasiado grande o demasiado pequeño para que Excel lo maneje, o cuando pasas un argumento numérico inválido a una función (como la raíz cuadrada de un número negativo).</p>
+          <p><strong>Cómo solucionarlo:</strong> Revisa que los números de la ecuación sean lógicos y que estés usando la fórmula matemática adecuada para tu objetivo.</p>
+        </div>
+
+        <section>
+          <h2>El salvavidas: La función SI.ERROR</h2>
+          <p>Una vez que sabes por qué ocurren los errores, puedes manejarlos elegantemente. La función <code>SI.ERROR(tu_formula; "Mensaje personalizado")</code> te permite mostrar un texto bonito (o una celda en blanco) en lugar de un feo error, ideal para reportes y dashboards.</p>
+        </section>
+
+      </article>
+    </main>
+  </body>
+</html>

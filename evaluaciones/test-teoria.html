@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test de Teoría | Excel Learning Hub</title>
+    <link rel="stylesheet" href="../main-style.css" />
+    <style>
+      .quiz-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--border);
+      }
+      .quiz-header {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+      }
+      .progress-bar {
+        height: 6px;
+        background: var(--border);
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: var(--accent);
+        width: 0%;
+        transition: width 0.4s ease;
+      }
+      .question-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        color: var(--text-primary);
+      }
+      .options-grid {
+        display: grid;
+        gap: 1rem;
+      }
+      .option-btn {
+        padding: 1.25rem;
+        border-radius: 12px;
+        background: none;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .option-btn span {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+      .hidden {
+        display: none;
+      }
+      .animate-fade {
+        animation: fadeIn 0.4s ease forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .form-input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        font-size: 1rem;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+      }
+      .result-screen {
+        text-align: center;
+      }
+      .score-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 8px solid var(--accent);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem auto;
+      }
+    </style>
+  </head>
+  <body style="background: var(--bg-sidebar); display: block">
+    <div class="quiz-container">
+      <header style="margin-bottom: 2rem; text-align: center">
+        <a href="../evaluaciones.html" style="text-decoration: none; color: var(--accent); font-weight: 600">← Volver al menú</a>
+        <h1 id="test-title" style="margin-top: 1rem">Test: Fundamentos Excel (Parte1)</h1>
+      </header>
+
+      <!-- Pantalla de Registro -->
+      <section id="registration-form" class="animate-fade">
+        <h2 style="margin-bottom: 1rem">Identificación</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-secondary)">
+          Ingresa tu nombre para comenzar la evaluación teórica.
+        </p>
+        <div class="form-group">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500">Nombre y Apellido</label>
+          <input type="text" id="student-name" class="form-input" placeholder="Ej. Samuel Durán" required />
+        </div>
+        <button onclick="startQuiz()" class="btn-primary">Empezar Evaluación</button>
+      </section>
+
+      <!-- Pantalla de Preguntas -->
+      <section id="quiz-screen" class="hidden animate-fade">
+        <div class="quiz-header">
+          <div id="question-counter" style="font-size: 0.9rem; color: var(--text-muted)">Pregunta 1 de 10</div>
+        </div>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div id="question-container">
+          <div class="question-text" id="question-text">Cargando...</div>
+          <div class="options-grid" id="options-grid"></div>
+        </div>
+      </section>
+
+      <!-- Pantalla de Resultados -->
+      <section id="result-screen" class="result-screen hidden animate-fade">
+        <div style="font-size: 3rem; margin-bottom: 1rem">🎉</div>
+        <h2>¡Evaluación Completada!</h2>
+        <div class="score-circle">
+          <div class="score-value" id="final-score" style="font-size: 3rem; font-weight: 700; color: var(--accent)">0</div>
+          <div style="color: var(--text-muted)">de 100</div>
+        </div>
+        <button onclick="location.href = '../evaluaciones.html'" class="btn-primary" style="max-width: 250px">Finalizar y Salir</button>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="quiz-core.js"></script>
+    <script>
+      // CONFIGURACIÓN: Reemplazar por el ID real si subes las preguntas a Supabase.
+      // Actualmente usando un ID local para evitar errores y cargar las preguntas de abajo.
+      const TEST_ID = "test-teoria-local";
+
+      const PREGUNTAS_TEORIA = [
+        {
+          pregunta_text: "¿Cuál es la función principal de Excel según la teoría de hojas de cálculo?",
+          opciones: ["Diseñar gráficos vectoriales", "Crear presentaciones visuales", "Organizar, manipular y analizar datos", "Escribir documentos de texto"],
+          respuesta_correcta: 2
+        },
+        {
+          pregunta_text: "¿Cuántas filas tiene una hoja de Excel?",
+          opciones: ["1,000,000", "1,048,576", "16,384", "Infinitas"],
+          respuesta_correcta: 1
+        },
+        {
+          pregunta_text: "En el entorno de trabajo, ¿qué parte muestra la referencia o dirección de la celda activa?",
+          opciones: ["Barra de Fórmulas", "Barra de Título", "Cuadro de Nombres", "Barra de Estado"],
+          respuesta_correcta: 2
+        },
+        {
+          pregunta_text: "¿Cómo se identifican las columnas y las filas en una hoja de Excel?",
+          opciones: ["Columnas con números, filas con letras", "Columnas con letras, filas con números", "Ambas con números", "Ambas con letras"],
+          respuesta_correcta: 1
+        },
+        {
+          pregunta_text: "Si introduces un valor en una celda y por defecto se alinea a la DERECHA, ¿qué tipo de dato entiende Excel que es?",
+          opciones: ["Texto", "Número", "Lógico", "Error"],
+          respuesta_correcta: 1
+        },
+        {
+          pregunta_text: "¿Qué ocurre si intentas sumar una celda que Excel reconoce como 'Texto' aunque parezca un número?",
+          opciones: ["Excel lo convierte automáticamente y lo suma", "Excel pregunta si quieres cambiar el formato", "Da un error o un resultado de cero", "Cierra la hoja de cálculo por seguridad"],
+          respuesta_correcta: 2
+        },
+        {
+          pregunta_text: "¿Qué función moderna de Excel 2019/365 es recomendada para reemplazar a BUSCARV por ser más segura y flexible?",
+          opciones: ["BUSCARH", "BUSCARX", "BUSCAR.CONJUNTO", "INDICE"],
+          respuesta_correcta: 1
+        },
+        {
+          pregunta_text: "¿Qué concepto introducido en las versiones modernas (2019+) permite que una sola fórmula llene múltiples celdas automáticamente?",
+          opciones: ["Tablas Dinámicas", "Matrices Dinámicas", "Fórmulas Recursivas", "Marcos de Datos"],
+          respuesta_correcta: 1
+        },
+        {
+          pregunta_text: "Según la teoría, ¿qué función se utiliza en las versiones modernas para evaluar múltiples condiciones de forma limpia, reemplazando a los 'SI anidados'?",
+          opciones: ["SI.CONJUNTO", "SUMAR.SI", "ELEGIR", "CONDICION.MULTIPLE"],
+          respuesta_correcta: 0
+        },
+        {
+          pregunta_text: "¿Cuál de las siguientes es una función moderna que permite extraer una lista de valores sin duplicados instantáneamente?",
+          opciones: ["FILTRAR", "ORDENAR", "UNICOS", "LET"],
+          respuesta_correcta: 2
+        }
+      ];
+
+      // Inicializar al cargar
+      document.addEventListener("DOMContentLoaded", () => {
+        initQuiz(TEST_ID, PREGUNTAS_TEORIA);
+      });
+    </script>
+  </body>
+</html>

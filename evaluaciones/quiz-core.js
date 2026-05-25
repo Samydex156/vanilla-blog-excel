@@ -9,8 +9,15 @@ let userAnswers = [];
 let studentName = '';
 let testId = ''; // Se debe definir en el HTML de cada test
 
-async function initQuiz(id) {
+async function initQuiz(id, localQuestions = null) {
     testId = id;
+
+    if (localQuestions) {
+        questions = localQuestions;
+        renderQuestion();
+        return;
+    }
+
     const { data, error } = await sbClient
         .from('preguntas')
         .select('*')
