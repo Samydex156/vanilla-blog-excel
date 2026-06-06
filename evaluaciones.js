@@ -24,13 +24,19 @@ const testsSelection = document.getElementById('tests-selection');
 const dynamicStyles = document.createElement('style');
 dynamicStyles.innerHTML = `
     .option-btn.selected {
-        background: var(--accent);
-        color: white;
-        border-color: var(--accent);
+        background: var(--accent) !important;
+        color: white !important;
+        border-color: var(--accent) !important;
+    }
+    .option-btn.selected:hover {
+        background: var(--accent) !important;
+        color: white !important;
+        border-color: var(--accent) !important;
+        opacity: 0.9;
     }
     .option-btn.selected span {
-        background: white;
-        color: var(--accent);
+        background: white !important;
+        color: var(--accent) !important;
     }
     .nav-buttons {
         display: flex;
