@@ -17,6 +17,16 @@
         <p>Ahorra horas de trabajo eliminando el uso innecesario del ratón. Aquí tienes todos los shortcuts unificados para el curso.</p>
       </header>
 
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="search-shortcuts" 
+          placeholder="Buscar atajo de teclado..." 
+          class="search-input"
+          autocomplete="off"
+        />
+      </div>
+
       <div class="guide-content" style="max-width: 900px;">
         
         <h2 class="shortcut-category">Fundamentales (Edición y Archivo)</h2>
@@ -83,5 +93,53 @@
         </p>
       </footer>
     </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-shortcuts");
+        if (!searchInput) return;
+
+        searchInput.addEventListener("input", (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          const grids = document.querySelectorAll(".shortcut-grid");
+          const tips = document.querySelectorAll(".tip-box-mini");
+
+          // Ocultar cajas de consejos si hay una búsqueda activa
+          tips.forEach(tip => {
+            tip.style.display = query ? "none" : "";
+          });
+
+          grids.forEach((grid) => {
+            let visibleCount = 0;
+            const kbds = grid.querySelectorAll("kbd");
+
+            kbds.forEach((kbd) => {
+              const desc = kbd.nextElementSibling;
+              const text = (kbd.textContent + " " + desc.textContent).toLowerCase();
+              const matches = text.includes(query);
+
+              if (matches) {
+                kbd.style.display = "";
+                desc.style.display = "";
+                visibleCount++;
+              } else {
+                kbd.style.display = "none";
+                desc.style.display = "none";
+              }
+            });
+
+            // Ocultar/mostrar el título de categoría precedente
+            let prevEl = grid.previousElementSibling;
+            while (prevEl) {
+              if (prevEl.classList.contains("shortcut-category")) {
+                prevEl.style.display = visibleCount > 0 ? "" : "none";
+                break;
+              }
+              prevEl = prevEl.previousElementSibling;
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

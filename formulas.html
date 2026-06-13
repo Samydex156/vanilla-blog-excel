@@ -17,6 +17,16 @@
         <p>Consulta la sintaxis, argumentos y casos de uso de las funciones más potentes de Excel.</p>
       </header>
 
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="search-formulas" 
+          placeholder="Buscar función o categoría..." 
+          class="search-input"
+          autocomplete="off"
+        />
+      </div>
+
       <section class="content-section">
         <a href="formulas/suma.html" class="guide-item">
           <div class="guide-info">
@@ -81,5 +91,35 @@
         </p>
       </footer>
     </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-formulas");
+        if (!searchInput) return;
+
+        searchInput.addEventListener("input", (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          const items = document.querySelectorAll(".guide-item");
+
+          items.forEach((item) => {
+            const h3 = item.querySelector("h3");
+            const p = item.querySelector("p");
+            const tag = item.querySelector(".tag");
+
+            const text = (
+              h3.textContent + " " + 
+              p.textContent + " " + 
+              (tag ? tag.textContent : "")
+            ).toLowerCase();
+
+            if (text.includes(query)) {
+              item.style.display = "";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
