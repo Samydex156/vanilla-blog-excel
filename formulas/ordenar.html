@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función ORDENAR() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función ORDENAR()</h1>
+          <p>Ordena los valores de un rango o matriz de datos de forma automática, dinámica y en tiempo real. Al pertenecer a la nueva generación de funciones matriciales, el resultado se desborda en múltiples celdas contiguas.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =ORDENAR(matriz; [ordenar_índice]; [criterio_ordenación]; [por_columna])
+          </div>
+          <div class="argument">
+            <strong>matriz:</strong> El rango de celdas o la tabla que deseas ordenar (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>ordenar_índice:</strong> El número de fila o columna por la cual ordenar (ej. <code>2</code> para ordenar por la segunda columna) (opcional, por defecto es 1).
+          </div>
+          <div class="argument">
+            <strong>criterio_ordenación:</strong> Dirección del orden: <code>1</code> para orden ascendente (A-Z, menor a mayor) o <code>-1</code> para orden descendente (Z-A, mayor a menor) (opcional, por defecto es 1).
+          </div>
+          <div class="argument">
+            <strong>por_columna:</strong> Un valor lógico. Usa <code>FALSO</code> para ordenar filas (lo habitual) o <code>VERDADERO</code> para ordenar horizontalmente por columnas (opcional, por defecto es FALSO).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo Práctico</h2>
+          <p>Supongamos que tienes una tabla de nombres y puntajes en <code>A2:B10</code>, donde la columna B tiene los puntajes. Deseas ordenar la lista de mayor a menor puntaje de forma dinámica:</p>
+          <code>=ORDENAR(A2:B10; 2; -1)</code>
+          <p>Excel tomará toda la tabla y desbordará el resultado ordenado a partir de la celda donde insertes la fórmula. Si agregas o cambias puntajes en la tabla original, el resultado se actualizará al instante.</p>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo ORDENAR]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>Error de Desbordamiento:</strong> Si las celdas a las cuales se debe desbordar la lista ordenada contienen otros datos (incluso un solo espacio en blanco), Excel devolverá el error <code>#¡DESBORDAMIENTO!</code> (o <code>#SPILL!</code>). Limpia esas celdas para resolverlo.</li>
+            <li>En la versión en inglés de Excel, esta función se denomina <code>SORT()</code>.</li>
+            <li>*Nota: Esta función solo está disponible en Excel para Microsoft 365, Excel 2021 y Excel Web.*</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

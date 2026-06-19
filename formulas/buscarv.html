@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función BUSCARV() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función BUSCARV()</h1>
+          <p>Busca un valor específico en la primera columna de un rango y devuelve el dato ubicado en la misma fila dentro de la columna que indiques. Es la función de búsqueda clásica de Excel.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =BUSCARV(valor_buscado; matriz_buscar_en; indicador_columnas; [ordenado])
+          </div>
+          <div class="argument">
+            <strong>valor_buscado:</strong> El valor o código que deseas localizar en la primera columna de tu tabla (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>matriz_buscar_en:</strong> El rango completo de la tabla que contiene tanto el valor de búsqueda como el resultado que deseas extraer (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>indicador_columnas:</strong> El número entero de columna dentro de tu matriz (empezando en 1 para la columna de búsqueda) desde donde se extraerá el resultado (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>ordenado:</strong> Valor lógico para definir el tipo de coincidencia. Usa <code>FALSO</code> (o <code>0</code>) para una coincidencia exacta, y <code>VERDADERO</code> (o <code>1</code>) para una coincidencia aproximada (opcional, por defecto es VERDADERO).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo Práctico</h2>
+          <p>Imagina que tienes una base de datos de empleados en el rango <code>A2:C10</code> donde la columna A tiene los códigos de empleado, la columna B los nombres y la columna C los salarios. Para buscar el salario del código "EMP-05":</p>
+          <code>=BUSCARV("EMP-05"; A2:C10; 3; FALSO)</code>
+          <p>La función buscará "EMP-05" en la columna A y devolverá el valor correspondiente en la columna C (columna número 3 de la selección).</p>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo BUSCARV]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>¡Búsqueda hacia la derecha!:</strong> <code>BUSCARV()</code> solo puede buscar valores ubicados a la derecha de la columna de búsqueda. No puede extraer información de columnas situadas a la izquierda del <code>valor_buscado</code>.</li>
+            <li>Si estableces el argumento <code>ordenado</code> en <code>VERDADERO</code> (o lo omites), la primera columna de la tabla debe estar ordenada de forma ascendente, de lo contrario podría devolver valores incorrectos. Por seguridad, **usa siempre FALSO** para búsquedas exactas.</li>
+            <li>Si no se encuentra el valor buscado usando <code>FALSO</code>, la función devolverá el error de tipo <code>#N/A</code>.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

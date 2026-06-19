@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función NOMPROPIO() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función NOMPROPIO()</h1>
+          <p>Convierte a mayúscula la primera letra de cada palabra en una cadena de texto, y pone el resto de letras en minúsculas. Ideal para estandarizar bases de datos de nombres propios.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =NOMPROPIO(texto)
+          </div>
+          <div class="argument">
+            <strong>texto:</strong> La cadena de texto o la referencia a la celda que contiene el texto al que deseas dar formato (obligatorio).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo Práctico</h2>
+          <p>Si la celda <code>A1</code> contiene un nombre mal formateado como:</p>
+          <pre style="background: #f1f5f9; padding: 1rem; border-radius: 6px; font-family: monospace; margin: 1rem 0;">"mArIa dEl caRmEn"</pre>
+          <p>Al aplicar la fórmula:</p>
+          <code>=NOMPROPIO(A1)</code>
+          <p>El resultado devuelto será: <strong>"Maria Del Carmen"</strong>. La función se encargó de poner la "M", "D" y "C" en mayúsculas, y el resto de letras en minúsculas.</p>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo NOMPROPIO]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li>La función reconoce el inicio de una nueva palabra tras cualquier carácter que no sea una letra, como espacios, guiones, barras, etc. Por ejemplo, <code>=NOMPROPIO("juan-jose")</code> devolverá <code>"Juan-Jose"</code>.</li>
+            <li>Los números y los caracteres de puntuación no se modifican, pero las letras que los suceden se convertirán a mayúsculas.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

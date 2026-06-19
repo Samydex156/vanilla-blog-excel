@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función CONCAT() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función CONCAT()</h1>
+          <p>Une múltiples cadenas de texto o rangos de celdas en una sola celda. Es la versión mejorada y recomendada que reemplaza a la antigua función CONCATENAR.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =CONCAT(texto1; [texto2]; ...)
+          </div>
+          <div class="argument">
+            <strong>texto1:</strong> El primer elemento de texto, celda o rango de celdas completo que deseas unir (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>texto2; ...:</strong> Elementos de texto, celdas o rangos adicionales (hasta 254) que deseas unir (opcional).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplos Prácticos</h2>
+          <ul>
+            <li><strong>Unir celdas con espacios intermedios:</strong> Si <code>A2</code> contiene "Samuel" y <code>B2</code> contiene "Durán":<br/>
+              <code>=CONCAT(A2; " "; B2)</code> ➔ Devolverá <strong>"Samuel Durán"</strong>.
+            </li>
+            <li><strong>Unir rangos completos:</strong> Si las celdas <code>A1:A3</code> contienen "A", "B" y "C":<br/>
+              <code>=CONCAT(A1:A3)</code> ➔ Devolverá <strong>"ABC"</strong>. *(Esta acción no se podía realizar con CONCATENAR, tenías que seleccionar celda por celda).*
+            </li>
+          </ul>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo CONCAT]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>Diferencia clave con CONCATENAR:</strong> La función clásica <code>CONCATENAR()</code> no permitía rangos (ej. <code>A1:A3</code>). <code>CONCAT()</code> acepta tanto celdas individuales como rangos de forma directa.</li>
+            <li>Si el resultado final supera el límite de caracteres permitido para una celda de Excel (32,767 caracteres), la función devolverá el error <code>#¡VALOR!</code>.</li>
+            <li>Si requieres unir un rango separando cada elemento por un carácter (como comas, guiones o espacios) e ignorando celdas vacías, se recomienda utilizar la función <strong>UNIRCADENAS()</strong>.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

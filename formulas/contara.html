@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función CONTARA() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función CONTARA()</h1>
+          <p>Cuenta la cantidad de celdas que no están vacías en un rango de celdas.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =CONTARA(valor1; [valor2]; ...)
+          </div>
+          <div class="argument">
+            <strong>valor1:</strong> El primer elemento, referencia de celda o rango en el que se desea contar celdas no vacías (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>valor2; ...:</strong> Elementos, referencias de celda o rangos adicionales (hasta 255) a evaluar (opcional).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo Práctico</h2>
+          <p>Tomando una lista en el rango <code>A1:A7</code> con los siguientes datos:</p>
+          <ul>
+            <li>A1: <code>15</code> (número)</li>
+            <li>A2: <code>Texto</code> (texto)</li>
+            <li>A3: <code>24/05/2026</code> (fecha)</li>
+            <li>A4: <code>(vacío)</code></li>
+            <li>A5: <code>#N/A</code> (error)</li>
+            <li>A6: <code>30</code> (número)</li>
+            <li>A7: <code>TRUE</code> (lógico)</li>
+          </ul>
+          <p>Si utilizas la fórmula:</p>
+          <code>=CONTARA(A1:A7)</code>
+          <p>El resultado obtenido será <strong>6</strong>, ya que todas las celdas contienen información excepto la celda <code>A4</code> que está completamente vacía.</p>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo CONTARA]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>CONTARA()</strong> cuenta números, textos, valores lógicos (VERDADERO/FALSO), mensajes de error y fórmulas que devuelvan una cadena vacía (<code>""</code>).</li>
+            <li>La única información que ignora son las celdas vacías sin ningún contenido.</li>
+            <li>Si solo te interesa contar celdas numéricas, debes utilizar la función <strong>CONTAR()</strong>.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

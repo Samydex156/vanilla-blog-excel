@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función BUSCARX() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función BUSCARX()</h1>
+          <p>Busca un valor en un rango o matriz y devuelve el elemento correspondiente de un segundo rango o matriz. Diseñada como la versión moderna y definitiva para reemplazar a BUSCARV y BUSCARH.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =BUSCARX(valor_buscado; rango_búsqueda; rango_devolución; [si_no_se_encuentra]; [modo_de_coincidencia]; [modo_de_búsqueda])
+          </div>
+          <div class="argument">
+            <strong>valor_buscado:</strong> El elemento o código que deseas localizar (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>rango_búsqueda:</strong> El rango o columna individual donde se buscará el <code>valor_buscado</code> (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>rango_devolución:</strong> El rango o columna de donde se extraerá el resultado correspondiente (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>si_no_se_encuentra:</strong> El texto o valor a devolver si no existe coincidencia, evitando el uso extra de <code>SI.ERROR()</code> (opcional).
+          </div>
+          <div class="argument">
+            <strong>modo_de_coincidencia:</strong> Tipo de coincidencia: <code>0</code> para exacta (por defecto), <code>-1</code> exacta o menor, <code>1</code> exacta o mayor, <code>2</code> caracteres comodín (opcional).
+          </div>
+          <div class="argument">
+            <strong>modo_de_búsqueda:</strong> Dirección de búsqueda: <code>1</code> de primero a último (por defecto), <code>-1</code> de último a primero, <code>2</code> o <code>-2</code> para búsquedas binarias rápidas (opcional).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo Práctico</h2>
+          <p>Imagina que tienes una columna de salarios en <code>A2:A10</code> y los códigos de empleado en <code>B2:B10</code> (el salario está a la izquierda de los códigos). Para buscar el salario del empleado "EMP-05" y devolver "No registrado" en caso de error:</p>
+          <code>=BUSCARX("EMP-05"; B2:B10; A2:A10; "No registrado")</code>
+          <p>La función buscará en la columna B y extraerá el valor respectivo de la columna A. Si no lo encuentra, en lugar del típico <code>#N/A</code>, mostrará <code>"No registrado"</code>.</p>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo BUSCARX]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>¡Búsqueda hacia la izquierda!:</strong> A diferencia de <code>BUSCARV()</code>, en <code>BUSCARX()</code> el rango de devolución puede estar en cualquier lugar (a la derecha o a la izquierda del rango de búsqueda).</li>
+            <li><strong>Coincidencia Exacta por defecto:</strong> Ya no necesitas escribir el tedioso parámetro <code>FALSO</code>, pues <code>BUSCARX()</code> asume la búsqueda exacta de forma nativa.</li>
+            <li><strong>Búsqueda de abajo hacia arriba:</strong> Permite buscar desde el último registro ingresado hacia el primero usando el modo de búsqueda en <code>-1</code>, ideal para obtener el estado más reciente de un cliente o stock.</li>
+            <li>*Nota: Disponible únicamente en Excel para Microsoft 365, Excel 2021 y versiones web de Excel.*</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

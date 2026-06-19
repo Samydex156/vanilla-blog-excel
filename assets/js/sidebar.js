@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     <nav>
       <ul>
         <li><a href="practicas.html" data-page="practicas">Prácticas</a></li>
-        <li><a href="guias.html" data-page="guias">Guías</a></li>
         <li><a href="formulas.html" data-page="formulas">Fórmulas</a></li>
         <li><a href="atajos.html" data-page="atajos">Atajos</a></li>
         <li><a href="herramientas.html" data-page="herramientas">Herramientas</a></li>

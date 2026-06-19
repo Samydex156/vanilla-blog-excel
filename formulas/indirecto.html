@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función INDIRECTO() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función INDIRECTO()</h1>
+          <p>Devuelve una referencia de celda, rango, tabla u otra hoja de cálculo especificada a través de una cadena de texto. Permite crear fórmulas que apunten a lugares cambiantes y dinámicos.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =INDIRECTO(ref_texto; [a1])
+          </div>
+          <div class="argument">
+            <strong>ref_texto:</strong> Una cadena de texto (entre comillas) o una referencia a una celda que contenga la dirección de celda a la que deseas apuntar (ej. <code>"B2"</code>, <code>"Hoja2!A1"</code>) (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>a1:</strong> Valor lógico que indica el tipo de nomenclatura de referencia. Si es <code>VERDADERO</code> (o se omite), interpreta la dirección en estilo <code>A1</code> (ej. columna-fila). Si es <code>FALSO</code>, usa estilo <code>F1C1</code> (Fila-Columna) (opcional).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplos Prácticos</h2>
+          <ul>
+            <li><strong>Búsqueda Dinámica Simple:</strong> Si la celda <code>A1</code> contiene el texto <code>"C5"</code>, y en la celda <code>C5</code> hay un valor de 100:<br/>
+              <code>=INDIRECTO(A1)</code> ➔ Devolverá <strong>100</strong>. Excel lee el texto de A1 y va a buscar a la dirección indicada.
+            </li>
+            <li><strong>Llamados Dinámicos de Pestañas (Hojas):</strong> Si tienes un reporte mensual en distintas hojas de cálculo ("Enero", "Febrero", etc.) y tienes escrito el nombre del mes en la celda <code>B1</code> de tu hoja resumen, para traer el total de la celda <code>D20</code> de ese mes:<br/>
+              <code>=INDIRECTO("'" &amp; B1 &amp; "'!D20")</code><br/>
+              *(Si cambias el texto de B1 de "Enero" a "Febrero", la fórmula traerá automáticamente el dato de la hoja de Febrero).*
+            </li>
+          </ul>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo INDIRECTO]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>Función Volátil:</strong> <code>INDIRECTO()</code> se recalcula cada vez que se realiza cualquier modificación en la hoja de cálculo, aunque los datos a los que apunte no hayan cambiado. Usar demasiadas funciones volátiles puede ralentizar el rendimiento de libros de Excel grandes.</li>
+            <li>Si el texto especificado en <code>ref_texto</code> no corresponde a una dirección o referencia de rango válida, la función devolverá el error <code>#¡REF!</code>.</li>
+            <li>En inglés, esta función se denomina <code>INDIRECT()</code>.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

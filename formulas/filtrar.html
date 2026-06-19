@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función FILTRAR() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función FILTRAR()</h1>
+          <p>Extrae y muestra de forma dinámica todas las filas o registros de una tabla que cumplan con una o más condiciones especificadas. Pertenece a las nuevas funciones de matrices dinámicas.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =FILTRAR(matriz; incluir; [si_vacío])
+          </div>
+          <div class="argument">
+            <strong>matriz:</strong> El rango completo de datos o columnas de la tabla que deseas filtrar (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>incluir:</strong> Una comparación lógica (o conjunto de comparaciones) que define los criterios de filtrado. Sus dimensiones deben coincidir con las de la matriz (ej. <code>B2:B10="Lácteos"</code>) (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>si_vacío:</strong> El texto, número o mensaje que deseas mostrar en caso de que ningún registro de la tabla cumpla con la condición dada (opcional, por defecto devuelve error <code>#CALC!</code>).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplos Prácticos</h2>
+          <p>Supongamos una tabla de ventas en <code>A2:C10</code> donde la columna B contiene la categoría del producto:</p>
+          <ul>
+            <li>Para filtrar todas las ventas de la categoría "Juguetes":<br/><code>=FILTRAR(A2:C10; B2:B10="Juguetes"; "No hay ventas")</code></li>
+            <li>Para filtrar con múltiples condiciones (ej. categoría "Juguetes" **Y** ventas en columna C mayores a 100):<br/><code>=FILTRAR(A2:C10; (B2:B10="Juguetes") * (C2:C10>100); "Sin resultados")</code> *(se usa el signo asterisco <code>*</code> para representar la condición lógica Y)*</li>
+            <li>Para filtrar con condición O (ej. categoría "Juguetes" **O** categoría "Libros"):<br/><code>=FILTRAR(A2:C10; (B2:B10="Juguetes") + (B2:B10="Libros"); "Sin resultados")</code> *(se usa el signo de suma <code>+</code> para representar la condición lógica O)*</li>
+          </ul>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo FILTRAR]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>Error de Desbordamiento:</strong> Al igual que <code>ORDENAR()</code>, requiere que el área de salida del filtrado esté completamente despejada para evitar el error <code>#¡DESBORDAMIENTO!</code>.</li>
+            <li>En la versión en inglés de Excel, esta función se denomina <code>FILTER()</code>.</li>
+            <li>*Nota: Esta función solo está disponible en Excel para Microsoft 365, Excel 2021 y Excel Web.*</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

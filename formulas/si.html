@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función SI() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función SI()</h1>
+          <p>Evalúa una condición y devuelve un resultado si se cumple (VERDADERO) y otro si no se cumple (FALSO). Es la base del análisis lógico en Excel.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =SI(prueba_lógica; valor_si_verdadero; [valor_si_falso])
+          </div>
+          <div class="argument">
+            <strong>prueba_lógica:</strong> La condición lógica que deseas evaluar. Puede ser una comparación como <code>A1>=18</code>, <code>B2="Aprobado"</code>, etc. (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>valor_si_verdadero:</strong> El resultado que devolverá la función si la condición se cumple (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>valor_si_falso:</strong> El resultado que devolverá la función si la condición no se cumple (opcional, por defecto devuelve el texto "FALSO").
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo Práctico</h2>
+          <p>Imagina que tienes la nota de un alumno en la celda <code>A1</code> y quieres saber si está aprobado o reprobado (la nota de aprobación es 60):</p>
+          <code>=SI(A1>=60; "Aprobado"; "Reprobado")</code>
+          <p>Si <code>A1</code> tiene una nota de <strong>75</strong>, la fórmula devolverá <strong>"Aprobado"</strong>. Si tiene <strong>45</strong>, devolverá <strong>"Reprobado"</strong>.</p>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo SI]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li>Es posible anidar múltiples funciones <code>SI()</code> para evaluar más de dos opciones. Por ejemplo: <code>=SI(A1>=90; "Sobresaliente"; SI(A1>=60; "Aprobado"; "Reprobado"))</code>.</li>
+            <li>Para condiciones de texto en el argumento <code>prueba_lógica</code>, recuerda usar siempre comillas dobles (ej. <code>A1="Si"</code>). Excel no distingue entre mayúsculas y minúsculas al comparar texto en esta función.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

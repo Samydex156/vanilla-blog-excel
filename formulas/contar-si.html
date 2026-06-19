@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función CONTAR.SI() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función CONTAR.SI()</h1>
+          <p>Cuenta el número de celdas dentro de un rango que cumplen con un criterio o condición única determinada.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =CONTAR.SI(rango; criterio)
+          </div>
+          <div class="argument">
+            <strong>rango:</strong> El conjunto de una o más celdas que deseas evaluar y contar (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>criterio:</strong> La condición que deben cumplir las celdas para ser contadas. Puede ser un número, un texto, una comparación lógica o una referencia de celda (obligatorio).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplos Prácticos</h2>
+          <p>Consideremos un rango de celdas <code>A1:A10</code> con calificaciones del 1 al 100:</p>
+          <ul>
+            <li>Para contar las celdas con calificación exacta a 100:<br/><code>=CONTAR.SI(A1:A10; 100)</code></li>
+            <li>Para contar las celdas con calificaciones mayores o iguales a 60:<br/><code>=CONTAR.SI(A1:A10; ">=60")</code></li>
+            <li>Para contar las celdas que contienen exactamente la palabra "Pendiente":<br/><code>=CONTAR.SI(A1:A10; "Pendiente")</code></li>
+          </ul>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo CONTAR.SI]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>Importante:</strong> Cualquier criterio de texto o que incluya operadores lógicos (como <code>&gt;</code>, <code>&lt;</code>, <code>&lt;&gt;</code>) debe ir encerrado entre comillas dobles (por ejemplo: <code>"&gt;50"</code>).</li>
+            <li>La función no distingue entre mayúsculas y minúsculas en criterios de texto (ej. <code>"excel"</code> contará celdas con "Excel", "EXCEL" o "excel").</li>
+            <li>Puedes usar comodines en el criterio: el asterisco (<code>*</code>) representa cualquier grupo de caracteres y el signo de interrogación (<code>?</code>) representa un carácter único. Por ejemplo, <code>"A*"</code> cuenta celdas que comiencen con la letra A.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

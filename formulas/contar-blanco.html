@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función CONTAR.BLANCO() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función CONTAR.BLANCO()</h1>
+          <p>Cuenta el número de celdas vacías dentro de un rango específico de celdas. Es fundamental para identificar datos faltantes en listas y tablas.</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =CONTAR.BLANCO(rango)
+          </div>
+          <div class="argument">
+            <strong>rango:</strong> El grupo de celdas en el que deseas realizar la contabilización de vacíos (obligatorio).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplo Práctico</h2>
+          <p>Si tienes un rango de control de asistencia de empleados en <code>B2:B11</code> donde registras su hora de entrada, y las celdas en blanco representan ausencias:</p>
+          <code>=CONTAR.BLANCO(B2:B11)</code>
+          <p>Si hay 3 empleados que no asistieron (y cuyas celdas están vacías), la función devolverá <strong>3</strong>.</p>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo CONTAR.BLANCO]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li>Las celdas que contienen fórmulas que devuelven una cadena vacía (como <code>""</code> devuelto por un condicional <code>SI</code>) **sí se contabilizan** como vacías por esta función.</li>
+            <li>Las celdas que contienen el número cero (<code>0</code>) o espacios en blanco invisibles ingresados manualmente (ej. presionando la barra espaciadora) **no se consideran vacías** y se ignorarán. Para limpiar espacios invisibles antes de contar, usa la función <code>ESPACIOS()</code>.</li>
+            <li>En inglés, esta función se denomina <code>COUNTBLANK()</code>.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

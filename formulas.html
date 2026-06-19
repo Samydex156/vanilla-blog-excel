@@ -6,6 +6,205 @@
     <meta name="description" content="Biblioteca de consulta de fórmulas y funciones de Excel. Aprende la sintaxis y el uso de cada función con ejemplos." />
     <title>Biblioteca de Fórmulas | Excel Hub</title>
     <link rel="stylesheet" href="assets/css/main-style.css" />
+    <style>
+      .level-section {
+        margin-bottom: 3rem;
+      }
+      .level-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--border);
+        letter-spacing: -0.02em;
+      }
+      .no-formulas-placeholder {
+        padding: 2.5rem;
+        text-align: center;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        color: var(--text-muted);
+        font-size: 0.88rem;
+      }
+      
+      /* Tablero de Fórmulas (Launchpad / Drumpad Grid) */
+      .formula-pad-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1rem;
+      }
+      
+      .formula-pad {
+        background: var(--bg-main);
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        aspect-ratio: 1.05 / 1;
+      }
+      
+      /* Colores temáticos según categoría del Pad */
+      .formula-pad[data-category="Matemáticas"] {
+        --accent-pad: #107c41;
+      }
+      .formula-pad[data-category="Estadística"] {
+        --accent-pad: #8b5cf6;
+      }
+      .formula-pad[data-category="Fecha y Hora"] {
+        --accent-pad: #0284c7;
+      }
+      .formula-pad[data-category="Lógica"] {
+        --accent-pad: #d97706;
+      }
+      .formula-pad[data-category="Texto"] {
+        --accent-pad: #db2777;
+      }
+      .formula-pad[data-category="Búsqueda"] {
+        --accent-pad: #0d9488;
+      }
+      
+      .formula-pad:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent-pad, var(--accent));
+      }
+      
+      .formula-pad[data-category="Matemáticas"]:hover {
+        box-shadow: 0 10px 20px rgba(16, 124, 65, 0.08), 
+                    0 0 0 4px rgba(16, 124, 65, 0.04);
+      }
+      .formula-pad[data-category="Estadística"]:hover {
+        box-shadow: 0 10px 20px rgba(139, 92, 246, 0.08), 
+                    0 0 0 4px rgba(139, 92, 246, 0.04);
+      }
+      .formula-pad[data-category="Fecha y Hora"]:hover {
+        box-shadow: 0 10px 20px rgba(2, 132, 199, 0.08), 
+                    0 0 0 4px rgba(2, 132, 199, 0.04);
+      }
+      .formula-pad[data-category="Lógica"]:hover {
+        box-shadow: 0 10px 20px rgba(217, 119, 6, 0.08), 
+                    0 0 0 4px rgba(217, 119, 6, 0.04);
+      }
+      .formula-pad[data-category="Texto"]:hover {
+        box-shadow: 0 10px 20px rgba(219, 39, 119, 0.08), 
+                    0 0 0 4px rgba(219, 39, 119, 0.04);
+      }
+      .formula-pad[data-category="Búsqueda"]:hover {
+        box-shadow: 0 10px 20px rgba(13, 148, 136, 0.08), 
+                    0 0 0 4px rgba(13, 148, 136, 0.04);
+      }
+      
+      .formula-pad h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+        letter-spacing: -0.01em;
+      }
+      
+      .formula-pad p {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0.5rem 0;
+      }
+      
+      .formula-pad .tag {
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        background: #f1f5f9;
+        color: var(--text-muted);
+        letter-spacing: 0.01em;
+      }
+      
+      .formula-pad[data-category="Matemáticas"] .tag {
+        background: rgba(16, 124, 65, 0.08);
+        color: #107c41;
+      }
+      .formula-pad[data-category="Estadística"] .tag {
+        background: rgba(139, 92, 246, 0.08);
+        color: #8b5cf6;
+      }
+      .formula-pad[data-category="Fecha y Hora"] .tag {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+      .formula-pad[data-category="Lógica"] .tag {
+        background: rgba(217, 119, 6, 0.08);
+        color: #d97706;
+      }
+      .formula-pad[data-category="Texto"] .tag {
+        background: rgba(219, 39, 119, 0.08);
+        color: #db2777;
+      }
+      .formula-pad[data-category="Búsqueda"] .tag {
+        background: rgba(13, 148, 136, 0.08);
+        color: #0d9488;
+      }
+      
+      /* Ajustes de Responsividad */
+      @media (max-width: 600px) {
+        .formula-pad-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.85rem;
+        }
+        .formula-pad {
+          padding: 1rem 0.8rem;
+          aspect-ratio: auto;
+          min-height: 145px;
+        }
+        .formula-pad h3 {
+          font-size: 0.98rem;
+        }
+        .formula-pad p {
+          font-size: 0.7rem;
+          -webkit-line-clamp: 2;
+          margin: 0.4rem 0;
+        }
+        .formula-pad .tag {
+          font-size: 0.6rem;
+          padding: 0.15rem 0.45rem;
+        }
+      }
+      
+      @media (max-width: 380px) {
+        .formula-pad-grid {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+        .formula-pad {
+          aspect-ratio: auto;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          text-align: left;
+          min-height: auto;
+          padding: 1rem;
+        }
+        .formula-pad p {
+          display: none;
+        }
+        .formula-pad h3 {
+          margin-bottom: 0;
+        }
+      }
+    </style>
     <script src="assets/js/sidebar.js" defer></script>
   </head>
   <body>
@@ -27,61 +226,230 @@
         />
       </div>
 
-      <section class="content-section">
-        <a href="formulas/suma.html" class="guide-item">
-          <div class="guide-info">
+      <!-- NIVEL BÁSICO -->
+      <section class="level-section">
+        <h2 class="level-title">Nivel Básico</h2>
+        <div class="formula-pad-grid">
+          <a href="formulas/suma.html" class="formula-pad" data-category="Matemáticas">
             <h3>SUMA()</h3>
             <p>La función básica para sumar todos los números en un rango de celdas.</p>
-          </div>
-          <div class="guide-meta">
             <span class="tag">Matemáticas</span>
-            <span class="read-link">Consultar →</span>
-          </div>
-        </a>
+          </a>
 
-        <a href="formulas/promedio.html" class="guide-item">
-          <div class="guide-info">
+          <a href="formulas/promedio.html" class="formula-pad" data-category="Estadística">
             <h3>PROMEDIO()</h3>
             <p>Calcula la media aritmética de un grupo de valores numéricos.</p>
-          </div>
-          <div class="guide-meta">
             <span class="tag">Estadística</span>
-            <span class="read-link">Consultar →</span>
-          </div>
-        </a>
+          </a>
 
-        <a href="formulas/max-min.html" class="guide-item">
-          <div class="guide-info">
+          <a href="formulas/max-min.html" class="formula-pad" data-category="Estadística">
             <h3>MAX() y MIN()</h3>
             <p>Identifica el valor más alto y el más bajo dentro de una selección de datos.</p>
-          </div>
-          <div class="guide-meta">
             <span class="tag">Estadística</span>
-            <span class="read-link">Consultar →</span>
-          </div>
-        </a>
+          </a>
 
-        <a href="formulas/hoy.html" class="guide-item">
-          <div class="guide-info">
+          <a href="formulas/contar.html" class="formula-pad" data-category="Estadística">
+            <h3>CONTAR()</h3>
+            <p>Cuenta el número de celdas que contienen valores numéricos en un rango.</p>
+            <span class="tag">Estadística</span>
+          </a>
+
+          <a href="formulas/contara.html" class="formula-pad" data-category="Estadística">
+            <h3>CONTARA()</h3>
+            <p>Cuenta la cantidad de celdas que no están vacías (números, texto, errores, etc.).</p>
+            <span class="tag">Estadística</span>
+          </a>
+
+          <a href="formulas/contar-blanco.html" class="formula-pad" data-category="Estadística">
+            <h3>CONTAR.BLANCO()</h3>
+            <p>Cuenta el número de celdas vacías dentro de un rango específico.</p>
+            <span class="tag">Estadística</span>
+          </a>
+
+          <a href="formulas/hoy.html" class="formula-pad" data-category="Fecha y Hora">
             <h3>HOY()</h3>
             <p>Devuelve la fecha actual del sistema. Ideal para cálculos de edad y plazos.</p>
-          </div>
-          <div class="guide-meta">
             <span class="tag">Fecha y Hora</span>
-            <span class="read-link">Consultar →</span>
-          </div>
-        </a>
+          </a>
 
-        <a href="formulas/ahora.html" class="guide-item">
-          <div class="guide-info">
+          <a href="formulas/ahora.html" class="formula-pad" data-category="Fecha y Hora">
             <h3>AHORA()</h3>
             <p>Devuelve la fecha y hora exactas. Útil para registros de tiempo precisos.</p>
-          </div>
-          <div class="guide-meta">
             <span class="tag">Fecha y Hora</span>
-            <span class="read-link">Consultar →</span>
+          </a>
+
+          <a href="formulas/dia.html" class="formula-pad" data-category="Fecha y Hora">
+            <h3>DIA()</h3>
+            <p>Extrae el día (número del 1 al 31) de una fecha específica.</p>
+            <span class="tag">Fecha y Hora</span>
+          </a>
+
+          <a href="formulas/mes.html" class="formula-pad" data-category="Fecha y Hora">
+            <h3>MES()</h3>
+            <p>Devuelve el número de mes (del 1 al 12) correspondiente a una fecha.</p>
+            <span class="tag">Fecha y Hora</span>
+          </a>
+
+          <a href="formulas/anio.html" class="formula-pad" data-category="Fecha y Hora">
+            <h3>AÑO()</h3>
+            <p>Extrae el año (número de cuatro dígitos) de una fecha determinada.</p>
+            <span class="tag">Fecha y Hora</span>
+          </a>
+
+          <a href="formulas/mayusc.html" class="formula-pad" data-category="Texto">
+            <h3>MAYUSC()</h3>
+            <p>Convierte todas las letras de una cadena de texto en mayúsculas.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/minusc.html" class="formula-pad" data-category="Texto">
+            <h3>MINUSC()</h3>
+            <p>Convierte todas las letras de una cadena de texto en minúsculas.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/nompropio.html" class="formula-pad" data-category="Texto">
+            <h3>NOMPROPIO()</h3>
+            <p>Cambia a mayúscula la primera letra de cada palabra de un texto.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/concat.html" class="formula-pad" data-category="Texto">
+            <h3>CONCAT()</h3>
+            <p>Une una lista o rango de cadenas de texto de forma sencilla.</p>
+            <span class="tag">Texto</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- NIVEL INTERMEDIO -->
+      <section class="level-section">
+        <h2 class="level-title">Nivel Intermedio</h2>
+        <div class="formula-pad-grid">
+          <a href="formulas/sifecha.html" class="formula-pad" data-category="Fecha y Hora">
+            <h3>SIFECHA()</h3>
+            <p>Calcula la diferencia en días, meses o años entre dos fechas dadas.</p>
+            <span class="tag">Fecha y Hora</span>
+          </a>
+
+          <a href="formulas/si.html" class="formula-pad" data-category="Lógica">
+            <h3>SI()</h3>
+            <p>Realiza una prueba lógica y devuelve un valor según el resultado sea VERDADERO o FALSO.</p>
+            <span class="tag">Lógica</span>
+          </a>
+
+          <a href="formulas/si-error.html" class="formula-pad" data-category="Lógica">
+            <h3>SI.ERROR()</h3>
+            <p>Captura y controla errores en fórmulas devolviendo un valor alternativo en caso de fallo.</p>
+            <span class="tag">Lógica</span>
+          </a>
+
+          <a href="formulas/cambiar.html" class="formula-pad" data-category="Lógica">
+            <h3>CAMBIAR()</h3>
+            <p>Evalúa una expresión con una lista de valores y devuelve el primer resultado coincidente.</p>
+            <span class="tag">Lógica</span>
+          </a>
+
+          <a href="formulas/contar-si.html" class="formula-pad" data-category="Estadística">
+            <h3>CONTAR.SI()</h3>
+            <p>Cuenta las celdas dentro de un rango que cumplen con un criterio especificado.</p>
+            <span class="tag">Estadística</span>
+          </a>
+
+          <a href="formulas/sumar-si.html" class="formula-pad" data-category="Matemáticas">
+            <h3>SUMAR.SI()</h3>
+            <p>Suma los valores de un rango que cumplen con una condición o criterio determinado.</p>
+            <span class="tag">Matemáticas</span>
+          </a>
+
+          <a href="formulas/espacios.html" class="formula-pad" data-category="Texto">
+            <h3>ESPACIOS()</h3>
+            <p>Elimina los espacios iniciales, finales y dobles de una cadena de texto.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/izquierda.html" class="formula-pad" data-category="Texto">
+            <h3>IZQUIERDA()</h3>
+            <p>Devuelve el número especificado de caracteres desde el inicio de un texto.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/derecha.html" class="formula-pad" data-category="Texto">
+            <h3>DERECHA()</h3>
+            <p>Devuelve el número especificado de caracteres desde el final de un texto.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+           <a href="formulas/extrae.html" class="formula-pad" data-category="Texto">
+            <h3>EXTRAE()</h3>
+            <p>Extrae caracteres de una cadena de texto, partiendo de una posición y longitud dadas.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/texto.html" class="formula-pad" data-category="Texto">
+            <h3>TEXTO()</h3>
+            <p>Convierte un valor numérico en texto y le aplica un formato específico.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/unircadenas.html" class="formula-pad" data-category="Texto">
+            <h3>UNIRCADENAS()</h3>
+            <p>Une textos de varios rangos usando un delimitador y permitiendo ignorar celdas vacías.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/buscarv.html" class="formula-pad" data-category="Búsqueda">
+            <h3>BUSCARV()</h3>
+            <p>Busca un valor en la primera columna de una tabla y devuelve el valor de otra columna en la misma fila.</p>
+            <span class="tag">Búsqueda</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- NIVEL AVANZADO -->
+      <section class="level-section">
+        <h2 class="level-title">Nivel Avanzado</h2>
+        <div class="formula-pad-grid">
+          <a href="formulas/buscarx.html" class="formula-pad" data-category="Búsqueda">
+            <h3>BUSCARX()</h3>
+            <p>Busca un valor en un rango o matriz y devuelve el elemento correspondiente de un segundo rango o matriz.</p>
+            <span class="tag">Búsqueda</span>
+          </a>
+
+          <a href="formulas/ordenar.html" class="formula-pad" data-category="Búsqueda">
+            <h3>ORDENAR()</h3>
+            <p>Ordena de forma automática y dinámica el contenido de un rango o matriz.</p>
+            <span class="tag">Búsqueda</span>
+          </a>
+
+          <a href="formulas/filtrar.html" class="formula-pad" data-category="Búsqueda">
+            <h3>FILTRAR()</h3>
+            <p>Filtra un rango de datos basándose en los criterios lógicos que definas.</p>
+            <span class="tag">Búsqueda</span>
+          </a>
+
+          <a href="formulas/dividirtexto.html" class="formula-pad" data-category="Texto">
+            <h3>DIVIDIRTEXTO()</h3>
+            <p>Divide una cadena de texto en varias filas o columnas usando delimitadores específicos.</p>
+            <span class="tag">Texto</span>
+          </a>
+
+          <a href="formulas/let.html" class="formula-pad" data-category="Lógica">
+            <h3>LET()</h3>
+            <p>Asigna nombres a los resultados de cálculos intermedios para mejorar legibilidad y rendimiento.</p>
+            <span class="tag">Lógica</span>
+          </a>
+
+          <a href="formulas/indirecto.html" class="formula-pad" data-category="Búsqueda">
+            <h3>INDIRECTO()</h3>
+            <p>Devuelve una referencia de celda o rango especificada mediante una cadena de texto.</p>
+            <span class="tag">Búsqueda</span>
+          </a>
+
+          <div class="no-formulas-placeholder" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1.05 / 1; padding: 1.25rem;">
+            Próximamente más funciones...
           </div>
-        </a>
+        </div>
       </section>
 
       <footer>
@@ -99,23 +467,43 @@
 
         searchInput.addEventListener("input", (e) => {
           const query = e.target.value.toLowerCase().trim();
-          const items = document.querySelectorAll(".guide-item");
+          const sections = document.querySelectorAll(".level-section");
 
-          items.forEach((item) => {
-            const h3 = item.querySelector("h3");
-            const p = item.querySelector("p");
-            const tag = item.querySelector(".tag");
+          sections.forEach((section) => {
+            const items = section.querySelectorAll(".formula-pad");
+            let hasVisibleItems = false;
 
-            const text = (
-              h3.textContent + " " + 
-              p.textContent + " " + 
-              (tag ? tag.textContent : "")
-            ).toLowerCase();
+            items.forEach((item) => {
+              const h3 = item.querySelector("h3");
+              const p = item.querySelector("p");
+              const tag = item.querySelector(".tag");
 
-            if (text.includes(query)) {
-              item.style.display = "";
+              const text = (
+                h3.textContent + " " + 
+                (p ? p.textContent : "") + " " + 
+                (tag ? tag.textContent : "")
+              ).toLowerCase();
+
+              if (text.includes(query)) {
+                item.style.display = "";
+                hasVisibleItems = true;
+              } else {
+                item.style.display = "none";
+              }
+            });
+
+            const placeholder = section.querySelector(".no-formulas-placeholder");
+
+            if (query === "") {
+              section.style.display = "";
+              if (placeholder) placeholder.style.display = "";
             } else {
-              item.style.display = "none";
+              if (hasVisibleItems) {
+                section.style.display = "";
+                if (placeholder) placeholder.style.display = "none";
+              } else {
+                section.style.display = "none";
+              }
             }
           });
         });

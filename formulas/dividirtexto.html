@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función DIVIDIRTEXTO() | Biblioteca Excel</title>
+    <link rel="stylesheet" href="../assets/css/main-style.css" />
+    <style>
+        .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .guide-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .syntax { background: #0f172a; color: #f8fafc; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 1.1rem; margin: 1.5rem 0; border-left: 5px solid var(--accent); }
+        .argument { margin-bottom: 1rem; }
+        .argument strong { color: var(--accent); }
+        .screenshot-placeholder { background: var(--bg-sidebar); border: 2px dashed var(--border); padding: 4rem; text-align: center; margin: 2.5rem 0; border-radius: 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <main style="margin-left: 0; max-width: 100%; padding: 4rem 10%;">
+      <a href="../formulas.html" class="back-link">← Volver a Biblioteca</a>
+      <article class="guide-content">
+        <header>
+          <h1>Función DIVIDIRTEXTO()</h1>
+          <p>Divide cadenas de texto mediante delimitadores y las desborda automáticamente en múltiples columnas o filas. Es la versión en fórmula de la clásica herramienta de datos "Texto en Columnas".</p>
+        </header>
+
+        <section>
+          <h2>Sintaxis</h2>
+          <div class="syntax">
+            =DIVIDIRTEXTO(texto; col_delimitador; [row_delimitador]; [ignorar_vacío]; [modo_coincidencia]; [pad_with])
+          </div>
+          <div class="argument">
+            <strong>texto:</strong> La cadena de texto o celda que contiene el texto que deseas separar (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>col_delimitador:</strong> El carácter o caracteres de separación que indican dónde dividir el texto en columnas horizontales (obligatorio).
+          </div>
+          <div class="argument">
+            <strong>row_delimitador:</strong> El carácter o caracteres que indican dónde dividir el texto en filas verticales (opcional).
+          </div>
+          <div class="argument">
+            <strong>ignorar_vacío:</strong> Valor lógico. Usa <code>VERDADERO</code> para ignorar delimitadores consecutivos seguidos (opcional, por defecto es FALSO).
+          </div>
+          <div class="argument">
+            <strong>pad_with:</strong> El valor que se usará para rellenar celdas vacías en caso de generar matrices irregulares de filas y columnas (opcional, por defecto muestra error <code>#N/A</code>).
+          </div>
+        </section>
+
+        <section>
+          <h2>Ejemplos Prácticos</h2>
+          <ul>
+            <li><strong>Dividir en columnas (horizontal):</strong> Si la celda <code>A1</code> tiene el texto <code>"Santiago, Valparaíso, Concepción"</code>:<br/>
+              <code>=DIVIDIRTEXTO(A1; ", ")</code> ➔ Devolverá tres celdas horizontales continuas con cada una de las ciudades.
+            </li>
+            <li><strong>Dividir en filas (vertical):</strong> Para lograr que las mismas ciudades queden ordenadas hacia abajo en la misma columna, se usa el tercer argumento:<br/>
+              <code>=DIVIDIRTEXTO(A1; ; ", ")</code> *(dejamos el segundo argumento vacío).*
+            </li>
+          </ul>
+          
+          <div class="screenshot-placeholder">
+            [Espacio para captura de pantalla de Excel - Ejemplo DIVIDIRTEXTO]
+          </div>
+        </section>
+
+        <section>
+          <h2>Observaciones</h2>
+          <ul>
+            <li><strong>Error de Desbordamiento:</strong> Al ser una función matricial dinámica, si las celdas contiguas donde se desbordará la información están ocupadas, devolverá el error <code>#¡DESBORDAMIENTO!</code>.</li>
+            <li>En la versión en inglés de Excel, esta función se denomina <code>TEXTSPLIT()</code>.</li>
+            <li>*Nota: Esta función es muy moderna y está disponible exclusivamente en Excel para Microsoft 365 y Excel Web.*</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
