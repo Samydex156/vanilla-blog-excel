@@ -2,7 +2,7 @@
 
 ## 1. Propósito de negocio y alcance
 
-Portal educativo de consulta y recursos de Excel para estudiantes del **Instituto Nueva Tecnología** (curso del Prof. Samuel Durán). El sitio centraliza teoría, fórmulas, atajos, tips, herramientas, prácticas descargables, infografías y evaluaciones con certificación, permitiendo además integrar IA generativa dentro de Excel.
+Portal educativo de consulta y recursos de Excel para estudiantes del **Instituto Nueva Tecnología** (curso del Prof. Samuel Durán). El sitio centraliza teoría, fórmulas, atajos, tips, herramientas, prácticas descargables, infografías y evaluaciones con certificación.
 
 ### Dentro del Alcance
 - Contenido teórico y práctico de Excel (2016 y 2019/365).
@@ -10,7 +10,6 @@ Portal educativo de consulta y recursos de Excel para estudiantes del **Institut
 - Catálogo de atajos de teclado con búsqueda.
 - Archivos de práctica descargables (XLSX, DOCX, PDF) y casos empresariales.
 - Evaluaciones de 10 preguntas con registro de resultados.
-- Función VBA para llamar a Gemini desde Excel.
 
 ### Fuera del Alcance
 - Backend de autenticación de usuarios (las evaluaciones registran nombre/curso como texto).
@@ -29,15 +28,14 @@ flowchart TD
     E --> U5[Descargar archivos de práctica]
     E --> U6[Ver infografías y descargarlas]
     E --> U7[Realizar evaluación y obtener puntaje]
-    E --> U8[Usar función IA dentro de Excel]
 
-    D[Docente] --> U9[Registrar tests y preguntas en Supabase]
-    D --> U10[Consultar resultados de estudiantes]
-    D --> U11[Actualizar contenido del sitio]
+    D[Docente] --> U8[Registrar tests y preguntas en Supabase]
+    D --> U9[Consultar resultados de estudiantes]
+    D --> U10[Actualizar contenido del sitio]
 
     Sistema[Excel Learning Hub] --> U7
+    Sistema --> U8
     Sistema --> U9
-    Sistema --> U10
 ```
 
 ## 3. Mapa de módulos / dominio
@@ -59,13 +57,8 @@ graph LR
         CER[Certificación]
     end
 
-    subgraph Integracion[Integración]
-        IA[IA en Excel · VBA]
-    end
-
     ContenidoEducativo --> Evaluacion
     Evaluacion --> Certificacion
-    Prácticas --> Integracion
 ```
 
 ## 4. Árbol de directorios real
@@ -80,10 +73,17 @@ vanilla-blog-excel/
 ├── teoria.html                    # Índice de temas teóricos
 ├── tips.html                      # Índice de tips y trucos
 ├── evaluaciones.html              # Centro de certificaciones (enlaces a tests)
+├── 404.html                       # Página de error 404 (no indexada)
+├── robots.txt                     # Permite el rastreo completo y apunta al sitemap
+├── sitemap.xml                    # Mapa del sitio (61 URLs en https://excel.samydex.cv)
+├── manifest.webmanifest           # Manifiesto PWA (nombre, icono, tema)
+├── sw.js                          # Service worker PWA (cache-first de estáticos)
 ├── vercel.json                    # Config de despliegue (cleanUrls)
 ├── assets/
 │   ├── css/
-│   │   └── main-style.css         # Sistema de diseño (variables, responsive)
+│   │   ├── main-style.css         # Sistema de diseño (variables, responsive)
+│   │   └── guide-style.css        # Estilos compartidos de guías (formulas/teoria/tips/herramientas)
+│   ├── favicon.svg                # Icono del sitio (cuadro verde con "X")
 │   ├── js/
 │   │   ├── sidebar.js             # Navegación lateral única e inyección del menú
 │   │   ├── quiz-core.js           # Motor de tests con TEST_ID fijo + Supabase
@@ -99,8 +99,7 @@ vanilla-blog-excel/
 ├── herramientas/                  # 2 guías (texto-en-columnas, validacion-datos)
 ├── evaluaciones/                  # 3 tests (test-atajos, test-teoria, test-teoria2)
 └── practicas/
-    ├── archivos_practica/         # 15+ archivos XLSX, DOCX, PDF de ejercicios
-    └── gemini_prompt.bas          # Función VBA GEMINI_PROMPT2 (IA en Excel)
+    └── archivos_practica/         # 15+ archivos XLSX, DOCX, PDF de ejercicios
 ```
 
 ## 5. Stack tecnológico
@@ -111,8 +110,6 @@ vanilla-blog-excel/
 | Hosting | Vercel | — | CDN global, HTTPS y `cleanUrls` |
 | Backend de datos | Supabase (PostgreSQL + JS client) | supabase-js v2 (CDN) | Lectura de preguntas y guardado de resultados sin servidor |
 | Fuentes | Google Fonts (Inter) | — | Tipografía limpia y legible |
-| Inteligencia artificial | Google Gemini API | modelo `gemini-3.1-flash-lite` | Integración IA vía VBA desde Excel |
-| Automatización | VBA (WinHttp) | — | Conexión HTTP desde Excel sin complementos |
 
 No hay gestor de paquetes ni build system: el sitio se publica tal cual.
 

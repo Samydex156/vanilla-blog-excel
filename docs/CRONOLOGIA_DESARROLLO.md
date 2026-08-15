@@ -45,16 +45,18 @@ Período cubierto: del **28 de abril de 2026** (primer commit) al **3 de julio d
 - **Decisiones clave:** catálogo de fórmulas por nivel/categoría con buscador en vivo (ADR-007).
 - **Entregables:** `formulas/` (34 guías), buscador en `formulas.html` y `atajos.html`.
 
-### Fase 4 — Biblioteca de prácticas e integración con IA (17 jun – 3 jul 2026)
-- **Objetivo:** ofrecer material de práctica real (casos empresariales) y conectar Excel con IA.
+### Fase 4 — Biblioteca de prácticas (17 jun – 3 jul 2026)
+- **Objetivo:** ofrecer material de práctica real (casos empresariales).
 - **Hitos:**
   - `2026-06-17` Nuevos archivos de práctica XLSX.
   - `2026-06-19` Plantillas de casos **PixelWorld** y **BeatWave**.
   - `2026-06-29` Eliminación de ejercicios antiguos y nuevas plantillas PixelWorld.
   - `2026-07-01` Archivo `.bas` descargable (`gemini_prompt.bas`).
-  - `2026-07-03` Plantilla de ventas/personal de PixelWorld; descripción del módulo VBA como integración con IA.
-- **Decisiones clave:** funciones VBA `GEMINI_PROMPT2()` hacia Gemini (ADR-008).
-- **Entregables:** `practicas/archivos_practica/` (15+ archivos), `practicas/gemini_prompt.bas`.
+  - `2026-07-03` Plantilla de ventas/personal de PixelWorld.
+- **Decisiones clave:** casos empresariales como material pedagógico principal.
+- **Entregables:** `practicas/archivos_practica/` (15+ archivos).
+
+> **Actualización (ago 2026):** `practicas/gemini_prompt.bas` fue eliminado del repositorio por seguridad (contenía una API key real expuesta) y por no ser ya necesario. Ver ADR-009 en [ARQUITECTURA_GLOBAL.md](ARQUITECTURA_GLOBAL.md).
 
 ## Tabla resumen de hitos
 
@@ -72,8 +74,8 @@ Período cubierto: del **28 de abril de 2026** (primer commit) al **3 de julio d
 | 2026-06-17 | Archivos de práctica XLSX | 4 |
 | 2026-06-19 | Plantillas PixelWorld y BeatWave | 4 |
 | 2026-06-29 | Reemplazo de ejercicios y nuevas plantillas | 4 |
-| 2026-07-01 | Archivo VBA descargable | 4 |
-| 2026-07-03 | Integración IA (VBA) documentada y plantilla de personal | 4 |
+| 2026-07-01 | Archivo VBA descargable (retirado en ago 2026) | 4 |
+| 2026-07-03 | Plantilla de personal y casos PixelWorld | 4 |
 
 ## Lecciones aprendidas
 

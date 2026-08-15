@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <meta name="description" content="Biblioteca de consulta de fórmulas y funciones de Excel. Aprende la sintaxis y el uso de cada función con ejemplos." />
     <title>Biblioteca de Fórmulas | Excel Hub</title>
     <link rel="stylesheet" href="assets/css/main-style.css" />
@@ -508,6 +510,11 @@
           });
         });
       });
+    </script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+      }
     </script>
   </body>
 </html>

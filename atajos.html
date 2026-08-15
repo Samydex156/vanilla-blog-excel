@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <meta name="description" content="Lista completa de atajos de teclado para Excel. Domina el software como un profesional." />
     <title>Atajos de Teclado | Guía Completa</title>
     <link rel="stylesheet" href="assets/css/main-style.css" />
@@ -321,6 +323,11 @@
           });
         });
       });
+    </script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+      }
     </script>
   </body>
 </html>

@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <meta name="description" content="Trucos y métodos sencillos para dominar Excel y sorprender con tu eficiencia." />
     <title>Tips y Trucos | Excel</title>
     <link rel="stylesheet" href="assets/css/main-style.css" />
@@ -92,5 +94,10 @@
         </p>
       </footer>
     </main>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+      }
+    </script>
   </body>
 </html>

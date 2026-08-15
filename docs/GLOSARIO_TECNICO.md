@@ -4,7 +4,6 @@ Glosario de términos técnicos usados en el proyecto, extraídos del código y 
 
 ## A
 
-- **Acrónimo/Token:** En este proyecto, cadena de marcado temporal (p. ej. `@@QUOTE@@`) que `gemini_prompt.bas` usa para proteger comillas escapadas (`\"`) durante el parseo de la respuesta JSON de Gemini.
 - **ADR (Architecture Decision Record):** Registro de decisión de arquitectura. Ver [ARQUITECTURA_GLOBAL.md](ARQUITECTURA_GLOBAL.md).
 - **Argumento:** Dato que una función de Excel necesita para trabajar (números, celdas, rangos, texto, fechas). En la documentación de Excel se indica con corchetes `[...]` cuando es **opcional** (ver `teoria/anatomia-funcion.html`).
 - **Autofiltro:** Filtro de tabla activable con `Ctrl + Shift + L` (documentado en `atajos.html`).
@@ -17,7 +16,6 @@ Glosario de términos técnicos usados en el proyecto, extraídos del código y 
 ## C
 
 - **Clean URLs:** Configuración de Vercel (`vercel.json`) que elimina la extensión `.html` de las rutas servidas.
-- **CSV:** Formato de valores separados por comas que `gemini_prompt.bas` genera a partir de un rango de celdas para enviarlo a la IA.
 
 ## D
 
@@ -36,7 +34,6 @@ Glosario de términos técnicos usados en el proyecto, extraídos del código y 
 
 ## G
 
-- **GEMINI_PROMPT2():** Función VBA en `practicas/gemini_prompt.bas` que envía un rango de Excel (como CSV) y un prompt del usuario al modelo `gemini-3.1-flash-lite` de Google, y devuelve el texto generado a la celda.
 - **Google Fonts (Inter):** Fuente importada en `main-style.css` para la tipografía del sitio.
 
 ## I
@@ -89,9 +86,4 @@ Glosario de términos técnicos usados en el proyecto, extraídos del código y 
 
 ## V
 
-- **VBA:** Visual Basic for Applications; lenguaje usado en `gemini_prompt.bas` para integrar la API de Gemini con Excel.
 - **Vercel:** Plataforma de hosting estático que sirve el sitio con CDN y URLs limpias.
-
-## W
-
-- **WinHttp.WinHttpRequest.5.1:** Objeto COM de Windows usado por `gemini_prompt.bas` para realizar la petición HTTP POST a la API de Gemini.

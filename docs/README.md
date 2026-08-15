@@ -1,6 +1,6 @@
 # Excel Learning Hub
 
-**Portal educativo de consulta y recursos de Excel.** Sitio estático en español que reúne teoría, fórmulas, atajos, tips, herramientas, archivos de práctica y evaluaciones en línea, con certificación de conocimientos y un puente hacia la inteligencia artificial desde Excel vía VBA.
+**Portal educativo de consulta y recursos de Excel.** Sitio estático en español que reúne teoría, fórmulas, atajos, tips, herramientas, archivos de práctica y evaluaciones en línea con certificación de conocimientos.
 
 Proyecto creado por **Prof. Samuel Durán** (Instituto Nueva Tecnología) para el curso de Excel.
 
@@ -46,9 +46,6 @@ graph TD
 - 3 tests de 10 preguntas con registro del estudiante, puntaje, retroalimentación y resumen de respuestas.
 - Persistencia de resultados en **Supabase**.
 
-### Inteligencia artificial integrada en Excel
-- Función VBA `GEMINI_PROMPT2()` (`practicas/gemini_prompt.bas`) que envía el rango seleccionado de una hoja a la API de Gemini y devuelve el análisis en la celda.
-
 ## Atajos / comandos
 
 | Atajo | Acción | Descripción |
@@ -67,7 +64,7 @@ graph TD
 
 - **Navegador web** moderno (Chrome, Edge, Firefox, Safari) con JavaScript habilitado.
 - **Conexión a internet** para las evaluaciones (Supabase) y para el CDN de la fuente Inter.
-- **Excel 2016 o superior** (recomendado 2019/365) para usar los archivos de práctica y la macro `GEMINI_PROMPT2`.
+- **Excel 2016 o superior** (recomendado 2019/365) para usar los archivos de práctica.
 - Para desarrollo local no se requiere ningún SDK ni gestor de paquetes: es HTML/CSS/JS puro.
 
 ## Instalación rápida

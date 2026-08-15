@@ -21,7 +21,6 @@ Este documento describe la arquitectura técnica del portal educativo. Complemen
 ┌──────────────────────────────▼─────────────────────────────┐
 │  SERVICIOS EXTERNOS                                         │
 │  Supabase (PostgreSQL: tests, preguntas, resultados)        │
-│  Google Gemini (vía VBA, fuera del navegador)               │
 └──────────────────────────────┬─────────────────────────────┘
                                │
 ┌──────────────────────────────▼─────────────────────────────┐
@@ -55,7 +54,6 @@ graph TD
 
     subgraph Backend[Servicios externos]
         SUP[(Supabase<br/>PostgreSQL)]
-        GEM[Gemini API<br/>desde Excel vía VBA]
     end
 
     UI --> SB
@@ -64,7 +62,6 @@ graph TD
     UI --> Contenido
     QC --> SUP
     EV --> SUP
-    PR --> GEM
 ```
 
 ## 3. Flujos críticos
@@ -212,7 +209,9 @@ Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-009**.
   - Contenido indexable por buscadores y descargable.
   - No requiere base de datos para el contenido principal.
 
-### ADR-008 — Integración de IA en Excel vía función VBA
+### ADR-008 — Integración de IA en Excel vía función VBA (revertida)
+
+> **Estado:** reemplazado por [ADR-009](#adr-009--eliminacion-de-la-integracion-de-ia-en-vba).
 
 - **Contexto:** Los estudiantes avanzados pedían un puente entre Excel y la IA generativa.
 - **Decisión Adoptada:**
@@ -223,8 +222,34 @@ Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-009**.
   - Analiza datos reales de la hoja sin salir de Excel.
   - Enseña el patrón de integración de APIs en VBA.
 
+### ADR-009 — Eliminación de la integración de IA en VBA
+
+- **Contexto:** `practicas/gemini_prompt.bas` contenía una API key de Google válida versionada en un repositorio público (riesgo de abuso) y el recurso dejó de ser necesario para el curso.
+- **Decisión Adoptada:**
+  1. Eliminar `practicas/gemini_prompt.bas` del repositorio.
+  2. Retirar la sección "Macros y Programación (VBA)" de `practicas.html`.
+  3. No versionar claves API reales; en el futuro usar placeholders y variables de entorno.
+- **Consecuencias Positivas:**
+  - Se elimina el riesgo de uso indebido de la clave expuesta.
+  - El repositorio queda libre de secretos.
+- **Consecuencias Negativas:**
+  - Se pierde la funcionalidad de analizar datos con IA directamente en Excel (no requerida por el curso).
+
+### ADR-010 — Estilos de guía unificados, SEO básico y PWA
+
+- **Contexto:** Cada guía repetía el mismo bloque `<style>` (reglas `.guide-content`, `.syntax`, etc.) y el sitio carecía de elementos mínimos de indexación y de instalabilidad móvil.
+- **Decisión Adoptada:**
+  1. Crear `assets/css/guide-style.css` con los estilos compartidos de guías y eliminar los `<style>` duplicados de `formulas/`, `teoria/`, `tips/` y `herramientas/` (las páginas lo enlazan vía `../assets/css/guide-style.css`).
+  2. Añadir `robots.txt`, `sitemap.xml`, `favicon.svg`, `404.html` y meta descriptions generadas desde el primer párrafo de cada guía.
+  3. PWA básica: `manifest.webmanifest` + `sw.js` (cache-first de estáticos) registrado en las 8 páginas raíz.
+- **Consecuencias Positivas:**
+  - Un solo punto de edición para el estilo de guías.
+  - El sitio es indexable (sitemap + robots + descriptions) e instalable en móvil (PWA).
+- **Consecuencias Negativas:**
+  - El cache-first de `sw.js` puede servir contenido envejecido hasta actualizar la versión de caché.
+
 ## 6. Notas de mantenimiento
 
 - **Contenido:** agregar una fórmula nueva implica crear el archivo en `formulas/` y añadir su tarjeta en `formulas.html`.
 - **Evaluaciones:** para un test nuevo con motor dinámico, insertar filas en `tests` y `preguntas` (ver `assets/db/insert_preguntas_teoria.sql` como ejemplo). Con `quiz-core.js`, duplicar un `test-*.html` y cambiar su `TEST_ID`.
-- **Seguridad:** las claves de Supabase embebidas son *publishable* (de lectura para RLS). La API key de Gemini vive en el archivo VBA y es visible por diseño educativo; no debe usarse en producción con datos sensibles.
+- **Seguridad:** las claves de Supabase embebidas son *publishable* (de lectura para RLS). No versionar claves de servicio, ni de ningún proveedor, en el repositorio.

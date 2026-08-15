@@ -9,7 +9,6 @@ graph TD
     subgraph Repo[Repositorio / Git]
         CONT[Contenido estático: HTML, CSS, JS, IMG]
         PRAC[Archivos de práctica: XLSX, DOCX, PDF]
-        VBA[gemini_prompt.bas]
     end
 
     subgraph Vercel[Vercel · CDN]
@@ -28,7 +27,6 @@ graph TD
 
     CONT --> SERV
     PRAC --> SERV
-    VBA --> SERV
     Navegador -- lectura --> PREG
     Navegador -- inserción --> RES
     Navegador --> MEM
@@ -200,7 +198,7 @@ erDiagram
 - **Top de preguntas:** `quiz-core.js` solicita `.limit(10)`; si el test no tiene 10 preguntas, no arranca (validación con `alert`).
 - **Puntaje:** en `quiz-core.js` cada acierto suma 10 (escala 0–100); en `evaluaciones.js` suma 1 por acierto y muestra el total. El `puntaje` persistido depende del motor usado.
 - **Respuestas en memoria:** `userAnswers[]` no se persiste durante el test; solo el resultado final se inserta en `resultados`.
-- **Seguridad:** el cliente usa la *publishable key* de Supabase (RLS debe limitar la escritura a `resultados` y la lectura de `tests`/`preguntas`). No se deben exponer claves de servicio ni la API key de Gemini en el repositorio.
+- **Seguridad:** el cliente usa la *publishable key* de Supabase (RLS debe limitar la escritura a `resultados` y la lectura de `tests`/`preguntas`). No se deben exponer claves de servicio en el repositorio.
 - **Contenido estático:** no aplica caché especial; Vercel entrega por CDN. `vercel.json` activa `cleanUrls` para rutas sin extensión.
 
 ## Referencias cruzadas
