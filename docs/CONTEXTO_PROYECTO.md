@@ -76,8 +76,6 @@ vanilla-blog-excel/
 ├── 404.html                       # Página de error 404 (no indexada)
 ├── robots.txt                     # Permite el rastreo completo y apunta al sitemap
 ├── sitemap.xml                    # Mapa del sitio (61 URLs en https://excel.samydex.cv)
-├── manifest.webmanifest           # Manifiesto PWA (nombre, icono, tema)
-├── sw.js                          # Service worker PWA (cache-first de estáticos)
 ├── vercel.json                    # Config de despliegue (cleanUrls)
 ├── assets/
 │   ├── css/

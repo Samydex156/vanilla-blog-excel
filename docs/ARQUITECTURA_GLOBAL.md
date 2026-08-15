@@ -248,6 +248,17 @@ Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-009**.
 - **Consecuencias Negativas:**
   - El cache-first de `sw.js` puede servir contenido envejecido hasta actualizar la versión de caché.
 
+### ADR-011 — Retiro del PWA (service worker)
+
+- **Contexto:** El `sw.js` v1 precacheaba URLs `.html` que Vercel responde con una redirección 308 (cleanUrls), lo que rompía la caché y producía `ERR_FAILED` al navegar en los navegadores que ya lo tenían instalado. Una v2 (network-first) resolvió el fallo, pero por simplicidad y claridad de un proyecto educativo se decidió retirar el PWA por completo.
+- **Decisión Adoptada:** Eliminar `manifest.webmanifest`, `sw.js` y su registro de las 8 páginas raíz. El sitio consulta siempre al servidor, sin caché de service worker.
+- **Consecuencias Positivas:**
+  - Desaparece la clase de problemas de caché obsoleta y de estados corruptos por navegador.
+  - Un concepto menos que mantener y explicar.
+- **Consecuencias Negativas:**
+  - Se pierde la instalabilidad en móvil y el funcionamiento offline.
+  - Los navegadores que ya tenían el SW lo eliminarán solos al detectar el 404 de `/sw.js`.
+
 ## 6. Notas de mantenimiento
 
 - **Contenido:** agregar una fórmula nueva implica crear el archivo en `formulas/` y añadir su tarjeta en `formulas.html`.
