@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test de Teoría | Excel Learning Hub</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <title>Test: Fundamentos de Excel | Excel Learning Hub</title>
     <link rel="stylesheet" href="../assets/css/main-style.css" />
     <style>
       .quiz-container {
@@ -73,14 +74,8 @@
         animation: fadeIn 0.4s ease forwards;
       }
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
       .form-group {
         margin-bottom: 1.5rem;
@@ -122,20 +117,20 @@
     <div class="quiz-container">
       <header style="margin-bottom: 2rem; text-align: center">
         <a href="../evaluaciones.html" style="text-decoration: none; color: var(--accent); font-weight: 600">← Volver al menú</a>
-        <h1 id="test-title" style="margin-top: 1rem">Test: Fundamentos Excel (Parte1)</h1>
+        <h1 id="test-title" style="margin-top: 1rem">Test: Fundamentos de Excel</h1>
       </header>
 
       <!-- Pantalla de Registro -->
       <section id="registration-form" class="animate-fade">
         <h2 style="margin-bottom: 1rem">Identificación</h2>
         <p style="margin-bottom: 2rem; color: var(--text-secondary)">
-          Ingresa tu nombre para comenzar la evaluación teórica.
+          Ingresa tu nombre para comenzar la evaluación de fundamentos.
         </p>
         <div class="form-group">
           <label style="display: block; margin-bottom: 0.5rem; font-weight: 500">Nombre y Apellido</label>
           <input type="text" id="student-name" class="form-input" placeholder="Ej. Samuel Durán" required />
         </div>
-        <button onclick="startQuiz()" class="btn-primary">Empezar Evaluación</button>
+        <button type="button" onclick="startQuiz()" class="btn-primary">Empezar Evaluación</button>
       </section>
 
       <!-- Pantalla de Preguntas -->
@@ -156,24 +151,109 @@
       <section id="result-screen" class="result-screen hidden animate-fade">
         <div style="font-size: 3rem; margin-bottom: 1rem">🎉</div>
         <h2>¡Evaluación Completada!</h2>
+        <p id="student-name-display" style="font-size: 1.2rem; color: var(--text-primary); font-weight: 600; margin-top: 1rem;"></p>
         <div class="score-circle">
           <div class="score-value" id="final-score" style="font-size: 3rem; font-weight: 700; color: var(--accent)">0</div>
           <div style="color: var(--text-muted)">de 100</div>
         </div>
+        <p id="feedback-text" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem;"></p>
         <button onclick="location.href = '../evaluaciones.html'" class="btn-primary" style="max-width: 250px">Finalizar y Salir</button>
       </section>
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../assets/js/quiz-core.js"></script>
     <script>
-      // CONFIGURACIÓN: ID del test en Supabase
-      const TEST_ID = "659691e6-242a-453d-85b2-c9cfd6335fd3";
+      const preguntasTeoria = [
+        {
+          pregunta: "¿Cuántas filas tiene una hoja de cálculo de Excel?",
+          opciones: ["65.536", "1.048.576", "1.000.000", "16.384"],
+          respuesta: 1,
+          tipo: "multiple"
+        },
+        {
+          pregunta: "¿Qué muestra el Cuadro de Nombres en la ventana de Excel?",
+          opciones: [
+            "El contenido de la celda activa",
+            "La referencia de la celda activa",
+            "El nombre del libro de trabajo",
+            "El título del programa"
+          ],
+          respuesta: 1,
+          tipo: "multiple"
+        },
+        {
+          pregunta: "¿Cuál es la función principal de la Barra de Fórmulas?",
+          opciones: [
+            "Mostrar los nombres de las columnas",
+            "Navegar entre hojas del libro",
+            "Introducir, ver o editar el contenido de una celda",
+            "Cambiar el nivel de zoom"
+          ],
+          respuesta: 2,
+          tipo: "multiple"
+        },
+        {
+          pregunta: "¿Qué indica el signo igual (=) al inicio de una fórmula?",
+          opciones: [
+            "Que la celda está vacía",
+            "Que lo que viene es una operación que debe calcularse",
+            "Que hay un error de sintaxis",
+            "Que la celda contiene solo texto"
+          ],
+          respuesta: 1,
+          tipo: "multiple"
+        },
+        {
+          pregunta: "¿Qué significan los corchetes [ ] en la ayuda de una función?",
+          opciones: [
+            "Que el argumento es obligatorio",
+            "Que la función tiene un error",
+            "Que el argumento es opcional",
+            "Que la función está deshabilitada"
+          ],
+          respuesta: 2,
+          tipo: "multiple"
+        },
+        {
+          pregunta: "¿Qué es una celda en Excel?",
+          opciones: [
+            "Un botón de la barra de herramientas",
+            "Una pestaña del libro de trabajo",
+            "Un tipo de gráfico",
+            "La intersección entre una columna y una fila"
+          ],
+          respuesta: 3,
+          tipo: "multiple"
+        },
+        {
+          pregunta: "Las funciones en Excel pueden escribirse en minúsculas y el programa las convertirá a mayúsculas automáticamente.",
+          opciones: [],
+          respuesta: 0,
+          tipo: "vf"
+        },
+        {
+          pregunta: "Los paréntesis de una función son opcionales cuando no hay argumentos.",
+          opciones: [],
+          respuesta: 1,
+          tipo: "vf"
+        },
+        {
+          pregunta: "El separador de argumentos siempre es coma (,) sin importar la configuración de la computadora.",
+          opciones: [],
+          respuesta: 1,
+          tipo: "vf"
+        },
+        {
+          pregunta: "Excel sirve únicamente para realizar cálculos numéricos.",
+          opciones: [],
+          respuesta: 1,
+          tipo: "vf"
+        }
+      ];
 
-      // Inicializar al cargar
       document.addEventListener("DOMContentLoaded", () => {
-        initQuiz(TEST_ID);
+        initQuiz(preguntasTeoria);
       });
     </script>
   </body>
