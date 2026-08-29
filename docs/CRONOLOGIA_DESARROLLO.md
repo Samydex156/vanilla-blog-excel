@@ -1,6 +1,6 @@
 # Cronología de Desarrollo — Excel Learning Hub
 
-Período cubierto: del **28 de abril de 2026** (primer commit) al **3 de julio de 2026** (último commit). Fuente: historial real del repositorio `git log`. Autor de los commits: Samuel Durán. Repositorio: `https://github.com/Samydex156/vanilla-blog-excel.git`.
+Período cubierto: del **28 de abril de 2026** (primer commit) al **29 de agosto de 2026** (último commit). Fuente: historial real del repositorio `git log`. Autor de los commits: Samuel Durán. Repositorio: `https://github.com/Samydex156/vanilla-blog-excel.git`.
 
 ## Fases
 
@@ -32,7 +32,7 @@ Período cubierto: del **28 de abril de 2026** (primer commit) al **3 de julio d
   - `2026-05-25` Esquema de base de datos backend (`assets/db/eschema.sql`) y motor de quiz modular.
   - `2026-05-25` Módulos de teoría completos y sus assets.
 - **Decisiones clave:** Supabase como backend (ADR-003); 10 preguntas por test (ADR-004).
-- **Entregables:** `quiz-core.js`, `evaluaciones.js`, `eschema.sql`, `insert_preguntas_teoria.sql`, tests de atajos y teoría.
+- **Entregables:** `quiz-core.js`, `eschema.sql`, `insert_preguntas_teoria.sql`, tests de atajos y teoría.
 
 ### Fase 3 — UI del quiz y biblioteca de fórmulas (6–18 jun 2026)
 - **Objetivo:** pulir la experiencia del quiz y consolidar la biblioteca de fórmulas con búsqueda.
@@ -58,6 +58,18 @@ Período cubierto: del **28 de abril de 2026** (primer commit) al **3 de julio d
 
 > **Actualización (ago 2026):** `practicas/gemini_prompt.bas` fue eliminado del repositorio por seguridad (contenía una API key real expuesta) y por no ser ya necesario. Ver ADR-009 en [ARQUITECTURA_GLOBAL.md](ARQUITECTURA_GLOBAL.md).
 
+### Fase 5 — Refactorización de evaluaciones y reorganización de prácticas (29 ago 2026)
+- **Objetivo:** eliminar dependencia de Supabase, simplificar evaluaciones y reorganizar prácticas.
+- **Hitos:**
+  - `2026-08-29` Reorganización de prácticas: creación de `casos_practicos/`, 4 ejercicios visibles.
+  - `2026-08-29` Refactorización de evaluaciones: eliminación de Supabase, preguntas embebidas en HTML.
+  - `2026-08-29` Creación de 3 tests: Fórmulas Básicas, Fundamentos, Tipos de Datos y Referencias.
+  - `2026-08-29` Eliminación de `evaluaciones.js` y tests legacy.
+  - `2026-08-29` Barajado aleatorio de preguntas y dispersión de respuestas.
+  - `2026-08-29` Nombre del estudiante en pantalla de resultados.
+- **Decisiones clave:** eliminación de Supabase (ADR-012); evaluaciones 100% estáticas.
+- **Entregables:** `quiz-core.js` (estático), 3 tests, `practicas/casos_practicos/`.
+
 ## Tabla resumen de hitos
 
 | Fecha | Hito | Fase |
@@ -81,8 +93,9 @@ Período cubierto: del **28 de abril de 2026** (primer commit) al **3 de julio d
 
 1. **Hosting estático acelera el ciclo:** publicar HTML/CSS/JS puros en Vercel permite iterar por módulo sin pipeline de build.
 2. **Contenido reutilizable en JS:** centralizar el menú en `sidebar.js` y los estilos en un único CSS redujo la duplicación entre más de 60 páginas.
-3. **Separar contenido de interacción:** las páginas educativas son estáticas y solo las evaluaciones dependen de un backend; esto aísla fallos y simplifica la edición.
-4. **Dos motores de quiz duplican lógica:** `quiz-core.js` y `evaluaciones.js` comparten flujos; una futura unificación evitaría divergencias en el puntaje (10 pts vs 1 pt por acierto).
+3. **Separar contenido de interacción:** las páginas educativas son estáticas y las evaluaciones también lo son ahora; todo es mantenible sin backend.
+4. **Supabase era innecesario:** para un proyecto educativo con preguntas estables, embeber las preguntas en HTML es más simple y no requiere mantenimiento de base de datos.
 5. **Los casos empresariales (PixelWorld/BeatWave) son el mejor gancho pedagógico:** las prácticas "con historia" motivan más que los ejercicios genéricos.
+6. **El orden aleatorio de preguntas mejora la integridad:** cada estudiante ve un orden distinto, reduciendo la posibilidad de copia.
 
-Siguiente hito esperado: unificación de motores de quiz y página de certificación en fórmulas (bloqueada hoy en `evaluaciones.html`).
+Siguiente hito esperado: dashboard docente para consultar resultados de estudiantes.

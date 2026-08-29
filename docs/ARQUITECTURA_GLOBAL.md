@@ -10,17 +10,11 @@ Este documento describe la arquitectura técnica del portal educativo. Complemen
 │  Páginas HTML estáticas + estilos + JavaScript vanilla     │
 │  (teoria/, formulas/, tips/, herramientas/, evaluaciones/) │
 └──────────────────────────────┬─────────────────────────────┘
-                               │ DOM + fetch a Supabase
+                               │ DOM (preguntas embebidas en HTML)
 ┌──────────────────────────────▼─────────────────────────────┐
 │  COMPONENTES / MÓDULOS JS                                   │
 │  sidebar.js   → navegación lateral única                    │
-│  quiz-core.js → motor de tests (estático, TEST_ID fijo)     │
-│  evaluaciones.js → motor de tests (dinámico, lista de BD)   │
-└──────────────────────────────┬─────────────────────────────┘
-                               │ HTTP (Supabase JS client)
-┌──────────────────────────────▼─────────────────────────────┐
-│  SERVICIOS EXTERNOS                                         │
-│  Supabase (PostgreSQL: tests, preguntas, resultados)        │
+│  quiz-core.js → motor de tests (estático, preguntas locales)│
 └──────────────────────────────┬─────────────────────────────┘
                                │
 ┌──────────────────────────────▼─────────────────────────────┐
@@ -40,7 +34,6 @@ graph TD
     subgraph CapaJS[JavaScript compartido]
         SB[sidebar.js<br/>Render del menú + estado activo]
         QC[quiz-core.js<br/>initQuiz / renderQuestion / finishQuiz]
-        EV[evaluaciones.js<br/>fetchTests / startQuiz / renderSummary]
     end
 
     subgraph Contenido[Contenido estático]
@@ -48,20 +41,13 @@ graph TD
         FO[formulas/ · 34 páginas]
         TI[tips/ · 6 páginas]
         HE[herramientas/ · 2 páginas]
-        PR[practicas/archivos_practica/ · 15+ archivos]
+        PR[practicas/ · 15 ejercicios + 9 casos]
         IN[assets/img/infografias/ · 5 imágenes]
-    end
-
-    subgraph Backend[Servicios externos]
-        SUP[(Supabase<br/>PostgreSQL)]
     end
 
     UI --> SB
     UI --> QC
-    UI --> EV
     UI --> Contenido
-    QC --> SUP
-    EV --> SUP
 ```
 
 ## 3. Flujos críticos
@@ -73,22 +59,19 @@ sequenceDiagram
     participant U as Usuario
     participant P as Página test-*.html
     participant Q as quiz-core.js
-    participant S as Supabase
 
-    U->>P: Abre evaluaciones/test-atajos.html
-    P->>Q: initQuiz(TEST_ID)
-    Q->>S: SELECT * FROM preguntas WHERE test_id=... ORDER BY orden LIMIT 10
-    S-->>Q: 10 preguntas (pregunta_text, opciones, respuesta_correcta)
+    U->>P: Abre evaluaciones/test-formulas.html
+    P->>Q: initQuiz(preguntasArray)
+    Q->>Q: shuffleArray() baraja preguntas
     Q->>U: renderQuestion() + barra de progreso
     U->>Q: Selecciona opción (handleAnswer)
     Q->>Q: Guarda en userAnswers[]
     U->>Q: finishQuiz()
     Q->>Q: Calcula puntaje (10 pts por acierto)
-    Q->>S: INSERT INTO resultados (nombre_estudiante, puntaje, ...)
     Q->>U: Muestra resumen por pregunta (renderSummary)
 ```
 
-> **Gotcha:** `initQuiz` limita a `.limit(10)`; si la BD no tiene 10 preguntas para ese `test_id`, el test no arranca. Cada test usa un `TEST_ID` fijo hardcodeado en su HTML.
+> **Nota:** Las preguntas están embebidas directamente en el HTML de cada test. No hay llamadas a servicios externos.
 
 ### 3.2 Arranque y navegación (sidebar.js)
 
@@ -116,25 +99,21 @@ sequenceDiagram
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Seleccion: fetchTests() OK
-    Seleccion: Pantalla de selección de test
-    Seleccion --> Registro: selectTest(test)
+    [*] --> Registro
     Registro: Formulario de identificación
     Registro --> Pregunta: startQuiz() datos válidos
     Pregunta: renderQuestion()
     Pregunta --> Pregunta: Siguiente / Anterior
     Pregunta --> Resultado: finishQuiz() última pregunta
-    Resultado: Puntaje + resumen + guardado en Supabase
+    Resultado: Puntaje + resumen de respuestas
     Resultado --> [*]
     Registro --> Registro: datos incompletos (alert)
     Pregunta --> Pregunta: sin respuesta (alert)
 ```
 
-> La máquina aplica a ambos motores (`quiz-core.js` y `evaluaciones.js`). `evaluaciones.js` agrega la carga dinámica de la lista de tests desde la tabla `tests`.
-
 ## 5. Registro de ADRs
 
-Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-009**.
+Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-013**.
 
 ### ADR-001 — Sitio estático vanilla (HTML/CSS/JS) sin framework
 
@@ -157,7 +136,9 @@ Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-009**.
   - URLs legibles y compartibles (p. ej. `/formulas/suma`).
   - Despliegue automático desde Git.
 
-### ADR-003 — Supabase como backend de evaluaciones
+### ADR-003 — Supabase como backend de evaluaciones (OBSOLETO)
+
+> **Estado:** reemplazado por [ADR-012](#adr-012--eliminación-de-supabase-y-evaluaciones-100-estáticas).
 
 - **Contexto:** El sitio es estático pero las evaluaciones necesitan leer preguntas y guardar resultados de estudiantes.
 - **Decisión Adoptada:**
@@ -172,11 +153,12 @@ Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-009**.
 
 - **Contexto:** Se quería una certificación uniforme y simple de calcular.
 - **Decisión Adoptada:**
-  1. Cada test carga máximo 10 preguntas (`.limit(10)` en `quiz-core.js`).
+  1. Cada test tiene 10 preguntas embebidas en el HTML.
   2. En `quiz-core.js` cada acierto suma 10 puntos (escala 0–100).
-  3. `evaluaciones.js` puntúa 1 punto por acierto y muestra el total.
+  3. Las preguntas se barajan aleatoriamente (`shuffleArray`) y las respuestas están dispersas.
 - **Consecuencias Positivas:**
   - Cálculo transparente y feedback inmediato al estudiante.
+  - Cada estudiante ve un orden distinto de preguntas.
 
 ### ADR-005 — Navegación lateral única con `sidebar.js`
 
@@ -259,8 +241,27 @@ Los ADRs se numeran de forma continua. El siguiente ADR será **ADR-009**.
   - Se pierde la instalabilidad en móvil y el funcionamiento offline.
   - Los navegadores que ya tenían el SW lo eliminarán solos al detectar el 404 de `/sw.js`.
 
+### ADR-012 — Eliminación de Supabase y evaluaciones 100% estáticas
+
+- **Contexto:** Las evaluaciones usaban Supabase para leer preguntas y guardar resultados, lo que añadía una dependencia externa innecesaria para un proyecto educativo. Las preguntas son estables y no cambian frecuentemente.
+- **Decisión Adoptada:**
+  1. Eliminar la dependencia de Supabase de `quiz-core.js`.
+  2. Embeber las preguntas directamente en el HTML de cada test como arrays de JavaScript.
+  3. Eliminar `evaluaciones.js` (motor dinámico sin uso).
+  4. Eliminar los tests legacy (`test-atajos.html`, `test-teoria2.html`).
+  5. Agregar `shuffleArray()` para barajar preguntas aleatoriamente.
+  6. Mostrar nombre del estudiante en la pantalla de resultados.
+- **Consecuencias Positivas:**
+  - Cero dependencias externas para las evaluaciones.
+  - El sitio funciona 100% sin conexión a internet (excepto el hosting).
+  - Mantenimiento simplificado: editar preguntas directamente en el HTML.
+  - Sin costos de Supabase.
+- **Consecuencias Negativas:**
+  - No se persisten resultados de evaluaciones (solo en memoria del navegador).
+  - Las preguntas no se pueden actualizar sin editar el código fuente.
+
 ## 6. Notas de mantenimiento
 
 - **Contenido:** agregar una fórmula nueva implica crear el archivo en `formulas/` y añadir su tarjeta en `formulas.html`.
-- **Evaluaciones:** para un test nuevo con motor dinámico, insertar filas en `tests` y `preguntas` (ver `assets/db/insert_preguntas_teoria.sql` como ejemplo). Con `quiz-core.js`, duplicar un `test-*.html` y cambiar su `TEST_ID`.
-- **Seguridad:** las claves de Supabase embebidas son *publishable* (de lectura para RLS). No versionar claves de servicio, ni de ningún proveedor, en el repositorio.
+- **Evaluaciones:** para un test nuevo, duplicar un `test-*.html`, cambiar el título y las preguntas del array `preguntasArray`. Luego añadir el enlace en `evaluaciones.html`.
+- **Seguridad:** no hay claves API en el repositorio. Todo el código es estático y no maneja datos sensibles del servidor.

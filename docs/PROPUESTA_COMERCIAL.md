@@ -2,7 +2,7 @@
 
 ## 1. Resumen ejecutivo
 
-**Excel Learning Hub** es un portal educativo en español que centraliza teoría, fórmulas, atajos, tips, herramientas, prácticas y certificaciones de Microsoft Excel para el Instituto Nueva Tecnología (Prof. Samuel Durán). El sitio ofrece una ruta de aprendizaje estructurada —ver, practicar, evaluarse y certificarse—. Todo se publica como sitio estático en Vercel, sin costos de infraestructura, con un backend de datos (Supabase) solo donde hace falta: las evaluaciones.
+**Excel Learning Hub** es un portal educativo en español que centraliza teoría, fórmulas, atajos, tips, herramientas, prácticas y certificaciones de Microsoft Excel para el Instituto Nueva Tecnología (Prof. Samuel Durán). El sitio ofrece una ruta de aprendizaje estructurada —ver, practicar, evaluarse y certificarse—. Todo se publica como sitio estático en Vercel, sin costos de infraestructura ni dependencias externas.
 
 ## 2. Problema vs Solución
 
@@ -41,7 +41,6 @@ mindmap
     Certificar
       Tests de 10 preguntas
       Puntaje y retroalimentación
-      Registro de resultados
 ```
 
 ## 4. Traducción técnico-comercial
@@ -51,7 +50,7 @@ mindmap
 | Sitio estático en Vercel | Cero costo de hosting y alta velocidad de carga | Ahorro total en infraestructura |
 | Bibliotecas de fórmulas con buscador en vivo | Consulta inmediata: el estudiante encuentra la solución en segundos | Menos tiempo docente resolviendo dudas repetitivas |
 | Archivos de práctica con casos empresariales | Aprendizaje por simulación de negocio real | Estudiantes aplican lo aprendido sin perder tiempo buscando material |
-| Evaluaciones con persistencia en Supabase | Certificación verificable y trazable | Sustituye exámenes manuales de papel (calificación automática) |
+| Evaluaciones con preguntas embebidas | Certificación instantánea sin dependencias | Sustituye exámenes manuales de papel (calificación automática) |
 | Interfaz responsive (móvil) | Estudio en cualquier dispositivo | Mayor alcance de estudiantes |
 
 ## 5. Casos de uso con ROI
@@ -60,7 +59,7 @@ mindmap
 
 ### Caso A — Certificación del curso (Institución)
 - **Situación actual:** corregir exámenes de 30 estudiantes consume ~6 h/docente por evaluación.
-- **Con la plataforma:** la corrección es automática (el motor calcula puntaje y guarda el resultado en Supabase).
+- **Con la plataforma:** la corrección es automática (el motor calcula puntaje y muestra el resumen de respuestas en pantalla).
 - **ROI estimado:** ~6 h ahorradas por evaluación × 4 evaluaciones por ciclo = **~24 h por ciclo**, reasignables a docencia. *(Estimación)*
 
 ### Caso B — Preparación laboral del estudiante
@@ -70,8 +69,8 @@ mindmap
 
 ## 6. Propuesta de expansión
 
-1. **Certificación en Fórmulas** (bloqueada actualmente en `evaluaciones.html` como "Próximamente").
-2. **Dashboard docente** sobre la tabla `resultados` para ver promedios por curso.
+1. **Certificación en Fórmulas** (ya activa en `evaluaciones.html`).
+2. **Persistencia de resultados** para que el docente pueda revisar el progreso de sus estudiantes.
 3. **Más casos empresariales** (nuevas empresas ficticias y sectores).
 4. **Suscripción o venta de certificados** con validación en línea.
 

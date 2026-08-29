@@ -14,7 +14,7 @@ Portal educativo de consulta y recursos de Excel para estudiantes del **Institut
 ### Fuera del Alcance
 - Backend de autenticación de usuarios (las evaluaciones registran nombre/curso como texto).
 - CMS: el contenido se edita directamente sobre los archivos HTML.
-- Soporte offline de las evaluaciones (requieren Supabase).
+- Persistencia de resultados de evaluaciones (todo es en memoria del navegador).
 - Compatibilidad con versiones de Excel anteriores a 2016.
 
 ## 2. Diagrama de casos de uso
@@ -29,13 +29,10 @@ flowchart TD
     E --> U6[Ver infografías y descargarlas]
     E --> U7[Realizar evaluación y obtener puntaje]
 
-    D[Docente] --> U8[Registrar tests y preguntas en Supabase]
-    D --> U9[Consultar resultados de estudiantes]
-    D --> U10[Actualizar contenido del sitio]
+    D[Docente] --> U8[Actualizar contenido del sitio]
+    D --> U9[Crear nuevas evaluaciones en HTML]
 
     Sistema[Excel Learning Hub] --> U7
-    Sistema --> U8
-    Sistema --> U9
 ```
 
 ## 3. Mapa de módulos / dominio
@@ -69,7 +66,7 @@ vanilla-blog-excel/
 ├── atajos.html                    # Catálogo de atajos con buscador en vivo
 ├── formulas.html                  # Biblioteca de fórmulas por nivel y categoría
 ├── herramientas.html              # Índice de herramientas de Excel
-├── practicas.html                 # Lista de archivos de práctica descargables
+├── practicas.html                 # Lista de ejercicios y casos prácticos
 ├── teoria.html                    # Índice de temas teóricos
 ├── tips.html                      # Índice de tips y trucos
 ├── evaluaciones.html              # Centro de certificaciones (enlaces a tests)
@@ -84,20 +81,20 @@ vanilla-blog-excel/
 │   ├── favicon.svg                # Icono del sitio (cuadro verde con "X")
 │   ├── js/
 │   │   ├── sidebar.js             # Navegación lateral única e inyección del menú
-│   │   ├── quiz-core.js           # Motor de tests con TEST_ID fijo + Supabase
-│   │   └── evaluaciones.js        # Motor de tests dinámico (lista desde BD)
+│   │   └── quiz-core.js           # Motor de tests estático (preguntas embebidas, sin Supabase)
 │   ├── img/                       # Banners, diagramas y capturas de apoyo
 │   │   └── infografias/           # 5 infografías de la galería
 │   └── db/
-│       ├── eschema.sql            # Esquema: tests, preguntas, resultados
-│       └── insert_preguntas_teoria.sql  # Semillas de preguntas (tests 1 y 2)
+│       ├── eschema.sql            # Esquema legacy (tests, preguntas, resultados)
+│       └── insert_preguntas_teoria.sql  # Semillas legacy de preguntas
 ├── teoria/                        # 8 páginas de teoría (entorno, tipos de datos, ...)
 ├── formulas/                      # 34 guías de funciones (suma.html, buscarv.html, ...)
 ├── tips/                          # 6 tips (relleno-rapido, transponer, ...)
 ├── herramientas/                  # 2 guías (texto-en-columnas, validacion-datos)
-├── evaluaciones/                  # 3 tests (test-atajos, test-teoria, test-teoria2)
+├── evaluaciones/                  # 3 tests (test-formulas, test-teoria, test-referencias)
 └── practicas/
-    └── archivos_practica/         # 15+ archivos XLSX, DOCX, PDF de ejercicios
+    ├── archivos_practica/         # 15 archivos de ejercicios (XLSX, DOCX, PDF)
+    └── casos_practicos/           # 9 casos empresariales (PixelWorld, BeatWave)
 ```
 
 ## 5. Stack tecnológico
@@ -106,7 +103,6 @@ vanilla-blog-excel/
 |-----------|------------|---------|---------------|
 | Lenguaje | HTML5 + CSS3 + JavaScript (vanilla) | — | Cero dependencias, fácil edición por el docente |
 | Hosting | Vercel | — | CDN global, HTTPS y `cleanUrls` |
-| Backend de datos | Supabase (PostgreSQL + JS client) | supabase-js v2 (CDN) | Lectura de preguntas y guardado de resultados sin servidor |
 | Fuentes | Google Fonts (Inter) | — | Tipografía limpia y legible |
 
 No hay gestor de paquetes ni build system: el sitio se publica tal cual.

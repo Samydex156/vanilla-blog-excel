@@ -11,8 +11,7 @@ graph TD
     A[Navegador / Cliente] --> B[Estática: HTML + CSS + JS vanilla]
     B --> C[sidebar.js<br/>Navegación única]
     B --> D[Módulos de contenido<br/>teoria/ formulas/ tips/ herramientas/ practicas/]
-    B --> E[Evaluaciones]
-    E --> F[Supabase<br/>tests, preguntas, resultados]
+    B --> E[Evaluaciones<br/>Preguntas embebidas en HTML]
     B --> G[Vercel<br/>Hosting CDN]
     G --> A
 ```
@@ -36,15 +35,15 @@ graph TD
 - Guías de herramientas integradas de Excel (Texto en Columnas, Validación de Datos) en `herramientas/`.
 
 ### Prácticas descargables
-- 15+ archivos XLSX, DOCX y PDF para ejercitar (`practicas/archivos_practica/`).
-- Casos empresariales de ejemplo: **PixelWorld** y **BeatWave**.
+- 15 archivos de ejercicios en `practicas/archivos_practica/` (XLSX, DOCX, PDF).
+- 9 casos empresariales en `practicas/casos_practicos/` (PixelWorld y BeatWave).
 
 ### Infografías interactivas
 - Galería de 5 infografías con visor modal *fullscreen*, arrastre para desplazar y descarga (`index.html`).
 
 ### Evaluaciones en línea
 - 3 tests de 10 preguntas con registro del estudiante, puntaje, retroalimentación y resumen de respuestas.
-- Persistencia de resultados en **Supabase**.
+- Preguntas embebidas en HTML (sin backend); orden aleatorio y respuestas dispersas.
 
 ## Atajos / comandos
 
@@ -63,7 +62,6 @@ graph TD
 ## Requisitos previos
 
 - **Navegador web** moderno (Chrome, Edge, Firefox, Safari) con JavaScript habilitado.
-- **Conexión a internet** para las evaluaciones (Supabase) y para el CDN de la fuente Inter.
 - **Excel 2016 o superior** (recomendado 2019/365) para usar los archivos de práctica.
 - Para desarrollo local no se requiere ningún SDK ni gestor de paquetes: es HTML/CSS/JS puro.
 
